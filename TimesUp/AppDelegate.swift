@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let request: NSFetchRequest<Preset> = Preset.fetchRequest()
         let count = try! persistentContainer.viewContext.count(for: request)
-        print("\(count)")
         if count < 1 {
             for i in 1...20 {
                 let p = Preset(context: persistentContainer.viewContext)
