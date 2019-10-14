@@ -13,6 +13,7 @@ class PresetsViewController: UITableViewController {
     
     var persistentContainer: NSPersistentContainer!
     var fetchedResultsController: NSFetchedResultsController<Preset>!
+    var selectedPreset: Preset?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,18 @@ class PresetsViewController: UITableViewController {
             preset.seconds
         )
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPreset = fetchedResultsController.object(at: indexPath)
+        performSegue(withIdentifier: "showTimer", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTimer" {
+            let viewController = segue.destination as! TimerViewController
+            viewController.preset = selectedPreset!
+        }
     }
 }
 

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,10 +47,60 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="HEt-4c-01I"/>
+                    <connections>
+                        <segue destination="BgH-EV-gGO" kind="show" identifier="showTimer" id="ZKC-gh-Esh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-55-d5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1795.6521739130437" y="89.732142857142847"/>
+        </scene>
+        <!--Timer View Controller-->
+        <scene sceneID="jS1-7u-2N2">
+            <objects>
+                <viewController id="BgH-EV-gGO" customClass="TimerViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EEA-Ze-ejR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUO-vL-5Pp">
+                                <rect key="frame" x="160.5" y="392.5" width="93" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8i0-XO-lYU">
+                                <rect key="frame" x="73.5" y="463" width="267" height="76.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="64"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyV-G2-VQ9">
+                                <rect key="frame" x="173.5" y="571.5" width="67" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Start"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8i0-XO-lYU" firstAttribute="top" secondItem="GUO-vL-5Pp" secondAttribute="bottom" constant="32" id="AiF-DP-9f1"/>
+                            <constraint firstItem="KyV-G2-VQ9" firstAttribute="centerX" secondItem="kOs-AO-jGK" secondAttribute="centerX" id="BTG-Qs-FYA"/>
+                            <constraint firstItem="GUO-vL-5Pp" firstAttribute="centerX" secondItem="kOs-AO-jGK" secondAttribute="centerX" id="Ced-nC-uve"/>
+                            <constraint firstItem="8i0-XO-lYU" firstAttribute="centerY" secondItem="kOs-AO-jGK" secondAttribute="centerY" id="TGY-wd-83o"/>
+                            <constraint firstItem="KyV-G2-VQ9" firstAttribute="top" secondItem="8i0-XO-lYU" secondAttribute="bottom" constant="32" id="uHQ-Yl-KtV"/>
+                            <constraint firstItem="8i0-XO-lYU" firstAttribute="centerX" secondItem="kOs-AO-jGK" secondAttribute="centerX" id="xP8-6W-UZh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kOs-AO-jGK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pgG-dO-NXj"/>
+                    <connections>
+                        <outlet property="duration" destination="8i0-XO-lYU" id="0HR-JQ-zRX"/>
+                        <outlet property="name" destination="GUO-vL-5Pp" id="8gE-Gn-A6v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDG-vB-0Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2778" y="90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="74h-GV-coX">

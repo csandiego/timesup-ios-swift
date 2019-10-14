@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E889964023541C6400F057A0 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889963F23541C6400F057A0 /* TimerViewController.swift */; };
 		E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A02352A6C800334F58 /* AppDelegate.swift */; };
 		E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A22352A6C800334F58 /* SceneDelegate.swift */; };
 		E8FA74A52352A6C800334F58 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A42352A6C800334F58 /* PresetsViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E889963F23541C6400F057A0 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E8FA749D2352A6C800334F58 /* TimesUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimesUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FA74A02352A6C800334F58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8FA74A22352A6C800334F58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				E8FA74A22352A6C800334F58 /* SceneDelegate.swift */,
 				E8FA74A42352A6C800334F58 /* PresetsViewController.swift */,
 				E8FA74A62352A6C800334F58 /* Main.storyboard */,
+				E889963F23541C6400F057A0 /* TimerViewController.swift */,
 				E8FA74AC2352A6CE00334F58 /* Assets.xcassets */,
 				E8FA74AE2352A6CE00334F58 /* LaunchScreen.storyboard */,
 				E8FA74B12352A6CE00334F58 /* Info.plist */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E889964023541C6400F057A0 /* TimerViewController.swift in Sources */,
 				E8FA74A52352A6C800334F58 /* PresetsViewController.swift in Sources */,
 				E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */,
 				E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */,
