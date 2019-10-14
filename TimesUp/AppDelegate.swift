@@ -12,10 +12,19 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let request: NSFetchRequest<Preset> = Preset.fetchRequest()
+        let count = try! persistentContainer.viewContext.count(for: request)
+        print("\(count)")
+        if count < 1 {
+            for i in 1...20 {
+                let p = Preset(context: persistentContainer.viewContext)
+                p.name = "\(i) minutes"
+                p.minutes = Int64(i)
+            }
+            saveContext()
+        }
         return true
     }
 
@@ -77,6 +86,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 

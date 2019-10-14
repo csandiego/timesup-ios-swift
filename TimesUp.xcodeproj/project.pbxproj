@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A02352A6C800334F58 /* AppDelegate.swift */; };
 		E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A22352A6C800334F58 /* SceneDelegate.swift */; };
-		E8FA74A52352A6C800334F58 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A42352A6C800334F58 /* ViewController.swift */; };
+		E8FA74A52352A6C800334F58 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A42352A6C800334F58 /* PresetsViewController.swift */; };
 		E8FA74A82352A6C800334F58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FA74A62352A6C800334F58 /* Main.storyboard */; };
 		E8FA74AB2352A6C800334F58 /* TimesUp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A92352A6C800334F58 /* TimesUp.xcdatamodeld */; };
 		E8FA74AD2352A6CE00334F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FA74AC2352A6CE00334F58 /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 		E8FA749D2352A6C800334F58 /* TimesUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimesUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FA74A02352A6C800334F58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8FA74A22352A6C800334F58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E8FA74A42352A6C800334F58 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E8FA74A42352A6C800334F58 /* PresetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsViewController.swift; sourceTree = "<group>"; };
 		E8FA74A72352A6C800334F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8FA74AA2352A6C800334F58 /* TimesUp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimesUp.xcdatamodel; sourceTree = "<group>"; };
 		E8FA74AC2352A6CE00334F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			children = (
 				E8FA74A02352A6C800334F58 /* AppDelegate.swift */,
 				E8FA74A22352A6C800334F58 /* SceneDelegate.swift */,
-				E8FA74A42352A6C800334F58 /* ViewController.swift */,
+				E8FA74A42352A6C800334F58 /* PresetsViewController.swift */,
 				E8FA74A62352A6C800334F58 /* Main.storyboard */,
 				E8FA74AC2352A6CE00334F58 /* Assets.xcassets */,
 				E8FA74AE2352A6CE00334F58 /* LaunchScreen.storyboard */,
@@ -262,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FA74A52352A6C800334F58 /* ViewController.swift in Sources */,
+				E8FA74A52352A6C800334F58 /* PresetsViewController.swift in Sources */,
 				E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */,
 				E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */,
 				E8FA74AB2352A6C800334F58 /* TimesUp.xcdatamodeld in Sources */,
@@ -438,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2RNW8L2C6M;
 				INFOPLIST_FILE = TimesUp/Info.plist;
@@ -447,6 +448,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.csandiego.TimesUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -456,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2RNW8L2C6M;
 				INFOPLIST_FILE = TimesUp/Info.plist;
@@ -465,6 +468,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.csandiego.TimesUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
