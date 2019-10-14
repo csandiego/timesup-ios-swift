@@ -51,6 +51,28 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return swipeActionConfigurationForRowAt(tableView, indexPath: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return swipeActionConfigurationForRowAt(tableView, indexPath: indexPath)
+    }
+    
+    func swipeActionConfigurationForRowAt(_ tableView: UITableView, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: "Delete") {
+            action, sourceView, completionHandler in
+            let preset = self.fetchedResultsController.object(at: indexPath)
+            let context = self.persistentContainer.viewContext
+            context.delete(preset)
+            try! context.save()
+            completionHandler(true)
+        }
+        let config = UISwipeActionsConfiguration(actions: [action])
+        config.performsFirstActionWithFullSwipe = true
+        return config
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPreset = fetchedResultsController.object(at: indexPath)
         performSegue(withIdentifier: "showTimer", sender: self)
