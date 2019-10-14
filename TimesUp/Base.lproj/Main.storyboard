@@ -49,11 +49,60 @@
                     <navigationItem key="navigationItem" id="HEt-4c-01I"/>
                     <connections>
                         <segue destination="BgH-EV-gGO" kind="show" identifier="showTimer" id="ZKC-gh-Esh"/>
+                        <segue destination="csp-9V-ZZ2" kind="show" identifier="newPreset" id="C4P-oB-s4e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-55-d5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1795.6521739130437" y="89.732142857142847"/>
+        </scene>
+        <!--New Preset View Controller-->
+        <scene sceneID="zZU-qc-xth">
+            <objects>
+                <viewController id="csp-9V-ZZ2" customClass="NewPresetViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g7s-1u-Eje">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-Q9-axs">
+                                <rect key="frame" x="190" y="641" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="save:" destination="csp-9V-ZZ2" eventType="touchUpInside" id="EY8-ZA-aci"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUc-eb-cEp">
+                                <rect key="frame" x="16" y="393" width="382" height="216"/>
+                            </pickerView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqk-Cf-e2v" userLabel="Name">
+                                <rect key="frame" x="16" y="327" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yHA-Q9-axs" firstAttribute="top" secondItem="pUc-eb-cEp" secondAttribute="bottom" constant="32" id="4js-Sh-Ns4"/>
+                            <constraint firstItem="yHA-Q9-axs" firstAttribute="centerX" secondItem="5Ug-9K-l4h" secondAttribute="centerX" id="EZp-6c-ZWm"/>
+                            <constraint firstItem="5Ug-9K-l4h" firstAttribute="trailing" secondItem="Tqk-Cf-e2v" secondAttribute="trailing" constant="16" id="H55-Bj-XGy"/>
+                            <constraint firstItem="5Ug-9K-l4h" firstAttribute="trailing" secondItem="pUc-eb-cEp" secondAttribute="trailing" constant="16" id="MDP-z6-lUJ"/>
+                            <constraint firstItem="pUc-eb-cEp" firstAttribute="top" secondItem="Tqk-Cf-e2v" secondAttribute="bottom" constant="32" id="NmW-aG-m1l"/>
+                            <constraint firstItem="Tqk-Cf-e2v" firstAttribute="leading" secondItem="5Ug-9K-l4h" secondAttribute="leading" constant="16" id="OWV-Bk-Jf5"/>
+                            <constraint firstItem="pUc-eb-cEp" firstAttribute="centerY" secondItem="5Ug-9K-l4h" secondAttribute="centerY" id="mHR-Sj-wqB"/>
+                            <constraint firstItem="pUc-eb-cEp" firstAttribute="leading" secondItem="5Ug-9K-l4h" secondAttribute="leading" constant="16" id="mQX-Zq-PMV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Ug-9K-l4h"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9mQ-5x-5Bs"/>
+                    <connections>
+                        <outlet property="duration" destination="pUc-eb-cEp" id="uhw-iL-13J"/>
+                        <outlet property="nameTextField" destination="Tqk-Cf-e2v" id="4eM-hf-Rze"/>
+                        <outlet property="saveButton" destination="yHA-Q9-axs" id="hk8-nD-oNs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AZg-ZL-FE4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1796" y="846"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="jS1-7u-2N2">

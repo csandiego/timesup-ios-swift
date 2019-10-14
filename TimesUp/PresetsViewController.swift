@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class PresetsViewController: UITableViewController {
+class PresetsViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var persistentContainer: NSPersistentContainer!
     var fetchedResultsController: NSFetchedResultsController<Preset>!
@@ -26,9 +26,12 @@ class PresetsViewController: UITableViewController {
             sectionNameKeyPath: nil,
             cacheName: nil
         )
+        fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
         navigationItem.title = "Presets"
         navigationItem.largeTitleDisplayMode = .always
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newPreset))
+        navigationItem.setRightBarButton(addButton, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,10 +56,44 @@ class PresetsViewController: UITableViewController {
         performSegue(withIdentifier: "showTimer", sender: self)
     }
     
+    @objc func newPreset() {
+        performSegue(withIdentifier: "newPreset", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showTimer" {
+        switch segue.identifier {
+        case "newPreset":
+            let viewController = segue.destination as! NewPresetViewController
+            viewController.persistentContainer = persistentContainer
+        case "showTimer":
             let viewController = segue.destination as! TimerViewController
             viewController.preset = selectedPreset!
+        default:
+            break
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            let cell = tableView.cellForRow(at: indexPath!)!
+            let preset = fetchedResultsController.object(at: indexPath!)
+            cell.textLabel!.text = preset.name
+            cell.detailTextLabel!.text = String(
+                format: "%02d:%02d:%02d",
+                preset.hours,
+                preset.minutes,
+                preset.seconds
+            )
+        case .move:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        @unknown default:
+            break
         }
     }
 }
