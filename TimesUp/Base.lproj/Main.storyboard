@@ -145,6 +145,7 @@
                     <connections>
                         <outlet property="duration" destination="8i0-XO-lYU" id="0HR-JQ-zRX"/>
                         <outlet property="name" destination="GUO-vL-5Pp" id="8gE-Gn-A6v"/>
+                        <segue destination="9Fk-KA-3l4" kind="show" identifier="editPreset" id="Uqt-g1-Fw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDG-vB-0Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -168,6 +169,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxO-Xp-dQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="885.50724637681162" y="89.732142857142847"/>
+        </scene>
+        <!--Edit Preset View Controller-->
+        <scene sceneID="u9s-B3-dh9">
+            <objects>
+                <viewController id="9Fk-KA-3l4" customClass="EditPresetViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mTc-aA-2AI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4Q-Mv-eam">
+                                <rect key="frame" x="190" y="641" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="save:" destination="9Fk-KA-3l4" eventType="touchUpInside" id="KWe-Qy-4lC"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6u-IO-dl9">
+                                <rect key="frame" x="16" y="393" width="382" height="216"/>
+                            </pickerView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ql-wT-idr" userLabel="Name">
+                                <rect key="frame" x="16" y="327" width="382" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4Ql-wT-idr" firstAttribute="leading" secondItem="MgT-NO-WYZ" secondAttribute="leading" constant="16" id="BsL-VL-CHE"/>
+                            <constraint firstItem="E6u-IO-dl9" firstAttribute="leading" secondItem="MgT-NO-WYZ" secondAttribute="leading" constant="16" id="OLM-oz-HZ2"/>
+                            <constraint firstItem="MgT-NO-WYZ" firstAttribute="trailing" secondItem="4Ql-wT-idr" secondAttribute="trailing" constant="16" id="Qc4-m5-rgH"/>
+                            <constraint firstItem="K4Q-Mv-eam" firstAttribute="centerX" secondItem="MgT-NO-WYZ" secondAttribute="centerX" id="WaL-wb-9Ns"/>
+                            <constraint firstItem="E6u-IO-dl9" firstAttribute="top" secondItem="4Ql-wT-idr" secondAttribute="bottom" constant="32" id="eW9-nC-by6"/>
+                            <constraint firstItem="MgT-NO-WYZ" firstAttribute="trailing" secondItem="E6u-IO-dl9" secondAttribute="trailing" constant="16" id="fvg-jb-6v6"/>
+                            <constraint firstItem="E6u-IO-dl9" firstAttribute="centerY" secondItem="MgT-NO-WYZ" secondAttribute="centerY" id="gF0-cE-Vk4"/>
+                            <constraint firstItem="K4Q-Mv-eam" firstAttribute="top" secondItem="E6u-IO-dl9" secondAttribute="bottom" constant="32" id="lsW-ME-HXN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MgT-NO-WYZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9fp-nU-pnc"/>
+                    <connections>
+                        <outlet property="duration" destination="E6u-IO-dl9" id="9Q3-yJ-uuc"/>
+                        <outlet property="name" destination="4Ql-wT-idr" id="SVI-uD-5Ku"/>
+                        <outlet property="saveButton" destination="K4Q-Mv-eam" id="p4V-eg-QAS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QRV-Km-7fO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2777" y="846"/>
         </scene>
     </scenes>
 </document>

@@ -89,10 +89,19 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
             viewController.persistentContainer = persistentContainer
         case "showTimer":
             let viewController = segue.destination as! TimerViewController
+            viewController.persistentContainer = persistentContainer
             viewController.preset = selectedPreset!
         default:
             break
         }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {

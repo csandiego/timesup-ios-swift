@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E889964023541C6400F057A0 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889963F23541C6400F057A0 /* TimerViewController.swift */; };
 		E88996422354237400F057A0 /* NewPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88996412354237400F057A0 /* NewPresetViewController.swift */; };
+		E8899644235530AE00F057A0 /* EditPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8899643235530AE00F057A0 /* EditPresetViewController.swift */; };
 		E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A02352A6C800334F58 /* AppDelegate.swift */; };
 		E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A22352A6C800334F58 /* SceneDelegate.swift */; };
 		E8FA74A52352A6C800334F58 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A42352A6C800334F58 /* PresetsViewController.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		E889963F23541C6400F057A0 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E88996412354237400F057A0 /* NewPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetViewController.swift; sourceTree = "<group>"; };
+		E8899643235530AE00F057A0 /* EditPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresetViewController.swift; sourceTree = "<group>"; };
 		E8FA749D2352A6C800334F58 /* TimesUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimesUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FA74A02352A6C800334F58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8FA74A22352A6C800334F58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				E8FA74A22352A6C800334F58 /* SceneDelegate.swift */,
 				E8FA74A42352A6C800334F58 /* PresetsViewController.swift */,
 				E8FA74A62352A6C800334F58 /* Main.storyboard */,
+				E8899643235530AE00F057A0 /* EditPresetViewController.swift */,
 				E88996412354237400F057A0 /* NewPresetViewController.swift */,
 				E889963F23541C6400F057A0 /* TimerViewController.swift */,
 				E8FA74AC2352A6CE00334F58 /* Assets.xcassets */,
@@ -273,6 +276,7 @@
 				E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */,
 				E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */,
 				E88996422354237400F057A0 /* NewPresetViewController.swift in Sources */,
+				E8899644235530AE00F057A0 /* EditPresetViewController.swift in Sources */,
 				E8FA74AB2352A6C800334F58 /* TimesUp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
