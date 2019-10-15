@@ -26,13 +26,6 @@ class TimerViewController: UIViewController {
             preset.minutes,
             preset.seconds
         )
-        
-        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editPreset))
-        navigationItem.setRightBarButton(editButton, animated: true)
-    }
-    
-    @objc func editPreset() {
-        performSegue(withIdentifier: "editPreset", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

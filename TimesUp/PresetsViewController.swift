@@ -28,10 +28,6 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         )
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
-        navigationItem.title = "Presets"
-        navigationItem.largeTitleDisplayMode = .always
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newPreset))
-        navigationItem.setRightBarButton(addButton, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,10 +72,6 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPreset = fetchedResultsController.object(at: indexPath)
         performSegue(withIdentifier: "showTimer", sender: self)
-    }
-    
-    @objc func newPreset() {
-        performSegue(withIdentifier: "newPreset", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

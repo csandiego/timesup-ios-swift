@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Presets View Controller-->
+        <!--Presets-->
         <scene sceneID="Om6-DH-Hia">
             <objects>
                 <tableViewController id="wOv-A3-xzd" customClass="PresetsViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,10 +46,15 @@
                             <outlet property="delegate" destination="wOv-A3-xzd" id="xVo-ai-Lgu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="HEt-4c-01I"/>
+                    <navigationItem key="navigationItem" title="Presets" largeTitleDisplayMode="always" id="HEt-4c-01I">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="EqW-bU-zvv">
+                            <connections>
+                                <segue destination="csp-9V-ZZ2" kind="show" identifier="newPreset" id="gjb-Jy-WYs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BgH-EV-gGO" kind="show" identifier="showTimer" id="ZKC-gh-Esh"/>
-                        <segue destination="csp-9V-ZZ2" kind="show" identifier="newPreset" id="C4P-oB-s4e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-55-d5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -141,11 +146,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kOs-AO-jGK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="pgG-dO-NXj"/>
+                    <navigationItem key="navigationItem" id="pgG-dO-NXj">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="xTn-Zf-8iO">
+                            <connections>
+                                <segue destination="9Fk-KA-3l4" kind="show" identifier="editPreset" id="h4s-Zr-EJM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="duration" destination="8i0-XO-lYU" id="0HR-JQ-zRX"/>
                         <outlet property="name" destination="GUO-vL-5Pp" id="8gE-Gn-A6v"/>
-                        <segue destination="9Fk-KA-3l4" kind="show" identifier="editPreset" id="Uqt-g1-Fw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDG-vB-0Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -207,7 +217,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MgT-NO-WYZ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9fp-nU-pnc"/>
+                    <navigationItem key="navigationItem" id="9fp-nU-pnc" userLabel="I"/>
                     <connections>
                         <outlet property="duration" destination="E6u-IO-dl9" id="9Q3-yJ-uuc"/>
                         <outlet property="name" destination="4Ql-wT-idr" id="SVI-uD-5Ku"/>
