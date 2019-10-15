@@ -16,9 +16,9 @@ class TimerViewController: UIViewController {
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var duration: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         name.text = preset.name
         duration.text = String(
             format: "%02d:%02d:%02d",
@@ -29,10 +29,13 @@ class TimerViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editPreset" {
+        switch segue.identifier {
+        case "editPreset":
             let viewController = segue.destination as! EditPresetViewController
             viewController.persistentContainer = persistentContainer
             viewController.preset = preset
+        default:
+            break
         }
     }
 }
