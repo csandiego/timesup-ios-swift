@@ -13,21 +13,22 @@ class NewPresetViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     
     var persistentContainer: NSPersistentContainer!
 
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var name: UITextField!
     @IBOutlet weak var duration: UIPickerView!
     @IBOutlet weak var saveButton: UIButton!
     
-    var name = ""
-    var hours = 0
-    var minutes = 0
-    var seconds = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.delegate = self
+        
+        name.delegate = self
         duration.dataSource = self
         duration.delegate = self
-        saveButton.isEnabled = false
+        
+        saveButton.isEnabled = isValid()
+    }
+    
+    func isValid() -> Bool {
+        return name.text?.count ?? 0 > 0 && duration.selectedRow(inComponent: 0) + duration.selectedRow(inComponent: 1) + duration.selectedRow(inComponent: 2) > 0
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -36,10 +37,7 @@ class NewPresetViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text {
-            name = text
-            validate()
-        }
+        saveButton.isEnabled = isValid()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -55,32 +53,16 @@ class NewPresetViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch component {
-        case 0:
-            hours = row
-        case 1:
-            minutes = row
-        case 2:
-            seconds = row
-        default:
-            break
-        }
-        validate()
-    }
-    
-    func validate() {
-        let valid = name.count > 0 && hours + minutes + seconds > 0
-        saveButton.isEnabled = valid
+        saveButton.isEnabled = isValid()
     }
     
     @IBAction func save(_ sender: Any) {
-        let context = persistentContainer.viewContext
-        let preset = Preset(context: context)
-        preset.name = name
-        preset.hours = Int64(hours)
-        preset.minutes = Int64(minutes)
-        preset.seconds = Int64(seconds)
-        try! context.save()
+        let preset = Preset(context: persistentContainer.viewContext)
+        preset.name = name.text
+        preset.hours = Int64(duration.selectedRow(inComponent: 0))
+        preset.minutes = Int64(duration.selectedRow(inComponent: 1))
+        preset.seconds = Int64(duration.selectedRow(inComponent: 2))
+        try! persistentContainer.viewContext.save()
         navigationController!.popViewController(animated: true)
     }
 }

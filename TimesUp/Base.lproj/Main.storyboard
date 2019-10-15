@@ -74,10 +74,10 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUc-eb-cEp">
                                 <rect key="frame" x="16" y="393" width="382" height="216"/>
                             </pickerView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqk-Cf-e2v" userLabel="Name">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqk-Cf-e2v" userLabel="Name">
                                 <rect key="frame" x="16" y="327" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -96,7 +96,7 @@
                     <navigationItem key="navigationItem" id="9mQ-5x-5Bs"/>
                     <connections>
                         <outlet property="duration" destination="pUc-eb-cEp" id="uhw-iL-13J"/>
-                        <outlet property="nameTextField" destination="Tqk-Cf-e2v" id="4eM-hf-Rze"/>
+                        <outlet property="name" destination="Tqk-Cf-e2v" id="kzJ-0H-dTz"/>
                         <outlet property="saveButton" destination="yHA-Q9-axs" id="hk8-nD-oNs"/>
                     </connections>
                 </viewController>
