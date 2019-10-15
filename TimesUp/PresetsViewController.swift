@@ -13,7 +13,6 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     
     var persistentContainer: NSPersistentContainer!
     var fetchedResultsController: NSFetchedResultsController<Preset>!
-    var selectedPreset: Preset?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +25,8 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-        fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
+        fetchedResultsController.delegate = self
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,14 +35,7 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
-        let preset = fetchedResultsController.object(at: indexPath)
-        cell.textLabel!.text = preset.name
-        cell.detailTextLabel!.text = String(
-            format: "%02d:%02d:%02d",
-            preset.hours,
-            preset.minutes,
-            preset.seconds
-        )
+        bindCell(cell, indexPath)
         return cell
     }
     
@@ -69,11 +61,6 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         return config
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedPreset = fetchedResultsController.object(at: indexPath)
-        performSegue(withIdentifier: "showTimer", sender: self)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "newPreset":
@@ -82,7 +69,7 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         case "showTimer":
             let viewController = segue.destination as! TimerViewController
             viewController.persistentContainer = persistentContainer
-            viewController.preset = selectedPreset!
+            viewController.preset = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
         default:
             break
         }
@@ -104,20 +91,24 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
             tableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
             let cell = tableView.cellForRow(at: indexPath!)!
-            let preset = fetchedResultsController.object(at: indexPath!)
-            cell.textLabel!.text = preset.name
-            cell.detailTextLabel!.text = String(
-                format: "%02d:%02d:%02d",
-                preset.hours,
-                preset.minutes,
-                preset.seconds
-            )
+            bindCell(cell, indexPath!)
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [newIndexPath!], with: .fade)
         @unknown default:
             break
         }
+    }
+    
+    func bindCell(_ cell: UITableViewCell, _ indexPath: IndexPath) {
+        let preset = fetchedResultsController.object(at: indexPath)
+        cell.textLabel!.text = preset.name
+        cell.detailTextLabel!.text = String(
+            format: "%02d:%02d:%02d",
+            preset.hours,
+            preset.minutes,
+            preset.seconds
+        )
     }
 }
 
