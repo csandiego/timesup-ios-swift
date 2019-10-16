@@ -17,16 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if CommandLine.arguments.contains("--test-mode") {
             UIView.setAnimationsEnabled(false)
         }
-        let request: NSFetchRequest<Preset> = Preset.fetchRequest()
-        let count = try! persistentContainer.viewContext.count(for: request)
-        if count < 1 {
-            for i in 1...20 {
-                let p = Preset(context: persistentContainer.viewContext)
-                p.name = "\(i) minutes"
-                p.minutes = Int64(i)
-            }
-            saveContext()
-        }
         return true
     }
 
@@ -76,6 +66,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        if try! container.viewContext.count(for: Preset.fetchRequest()) < 1 {
+            for i in 1...10 {
+                let preset = Preset(context: container.viewContext)
+                preset.name = String(format: "%02d minutes", i)
+                preset.minutes = Int64(i)
+            }
+            try! container.viewContext.save()
+        }
         return container
     }()
 
