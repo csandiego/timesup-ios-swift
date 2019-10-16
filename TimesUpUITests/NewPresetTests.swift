@@ -16,7 +16,7 @@ class NewPresetTests: XCTestCase {
         continueAfterFailure = false
         
         app = XCUIApplication()
-        app.launchArguments = ["--disable-animations"]
+        app.launchArguments = ["--test-mode"]
         app.launch()
         app.navigationBars["Presets"].buttons["New"].tap()
     }
