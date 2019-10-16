@@ -14,6 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if CommandLine.arguments.contains("--disable-animations") {
+            UIView.setAnimationsEnabled(false)
+        }
         let request: NSFetchRequest<Preset> = Preset.fetchRequest()
         let count = try! persistentContainer.viewContext.count(for: request)
         if count < 1 {
