@@ -26,30 +26,30 @@ class NewPresetTests: XCTestCase {
     }
 
     func testWhenNameNotEmptyAndDurationEmptyThenDisableSaveButton() {
-        app.textFields["Name"].tap()
-        app.textFields["Name"].typeText("Test")
+        app.textFields["nameTextField"].tap()
+        app.textFields["nameTextField"].typeText("Test")
         app.buttons["Done"].tap()
         XCTAssertFalse(app.buttons["Save"].isEnabled)
     }
     
     func testWhenNameEmptyAndDurationNotEmptyThenDisableSaveButton() {
-        app.pickers.children(matching: .pickerWheel).matching(identifier: "00").element(boundBy: 1).swipeUp()
+        app.pickers["durationPicker"].pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "01")
         XCTAssertFalse(app.buttons["Save"].isEnabled)
     }
     
     func testWhenNameNotEmptyAndDurationNotEmptyThenEnableSaveButton() {
-        app.textFields["Name"].tap()
-        app.textFields["Name"].typeText("Test")
+        app.textFields["nameTextField"].tap()
+        app.textFields["nameTextField"].typeText("Test")
         app.buttons["Done"].tap()
-        app.pickers.children(matching: .pickerWheel).matching(identifier: "00").element(boundBy: 1).swipeUp()
+        app.pickers["durationPicker"].pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "01")
         XCTAssertTrue(app.buttons["Save"].isEnabled)
     }
     
     func testGivenSaveButtonEnabledWhenClickedThenSave() {
-        app.textFields["Name"].tap()
-        app.textFields["Name"].typeText("Test")
+        app.textFields["nameTextField"].tap()
+        app.textFields["nameTextField"].typeText("Test")
         app.buttons["Done"].tap()
-        app.pickers.children(matching: .pickerWheel).matching(identifier: "00").element(boundBy: 1).swipeUp()
+        app.pickers["durationPicker"].pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "01")
         app.buttons["Save"].tap()
         XCTAssertTrue(app.tables.cells.staticTexts["Test"].exists)
     }
