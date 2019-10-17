@@ -29,6 +29,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="nameLabel"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tON-9M-rmm">
                                             <rect key="frame" x="20" y="31.5" width="44" height="14.5"/>
@@ -36,6 +39,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="durationLabel"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -51,6 +57,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Presets" largeTitleDisplayMode="always" id="HEt-4c-01I">
                         <barButtonItem key="rightBarButtonItem" title="New" id="EqW-bU-zvv">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="newBarButtonItem"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <segue destination="csp-9V-ZZ2" kind="show" identifier="newPreset" id="gjb-Jy-WYs"/>
                             </connections>
@@ -72,6 +81,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-Q9-axs">
                                 <rect key="frame" x="190" y="641" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="saveButton"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="save:" destination="csp-9V-ZZ2" eventType="touchUpInside" id="EY8-ZA-aci"/>
                                 </connections>
@@ -128,12 +140,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="nameLabel"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8i0-XO-lYU">
                                 <rect key="frame" x="73.5" y="463" width="267" height="76.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="durationLabel"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyV-G2-VQ9">
                                 <rect key="frame" x="173.5" y="571.5" width="67" height="51"/>
@@ -154,6 +172,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="pgG-dO-NXj">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="xTn-Zf-8iO">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="editBarButtonItem"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <segue destination="9Fk-KA-3l4" kind="show" identifier="editPreset" id="h4s-Zr-EJM"/>
                             </connections>
@@ -197,6 +218,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4Q-Mv-eam">
                                 <rect key="frame" x="190" y="641" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="saveButton"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="save:" destination="9Fk-KA-3l4" eventType="touchUpInside" id="KWe-Qy-4lC"/>
                                 </connections>

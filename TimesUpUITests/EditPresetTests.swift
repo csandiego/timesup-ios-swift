@@ -11,6 +11,13 @@ import XCTest
 class EditPresetTests: XCTestCase {
     
     var app: XCUIApplication!
+    
+    let preset = (
+        name: "01 hour",
+        hours: 1,
+        minutes: 0,
+        seconds: 0
+    )
 
     override func setUp() {
         continueAfterFailure = false
@@ -19,43 +26,60 @@ class EditPresetTests: XCTestCase {
         app.launchArguments = ["--test-mode"]
         app.launch()
         app.tables.cells.element(boundBy: 0).tap()
-        app.navigationBars["TimesUp.TimerView"].buttons["Edit"].tap()
+        app.navigationBars["TimesUp.TimerView"].buttons["editBarButtonItem"].tap()
     }
 
     func testWhenNameEmptyAndDurationEmptyThenDisableSaveButton() {
+        let durationPicker = app.pickers["durationPicker"]
         app.textFields["nameTextField"].tap()
         app.buttons["Clear text"].tap()
         app.buttons["Done"].tap()
-        app.pickers["durationPicker"].pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "00")
-        app.pickers["durationPicker"].pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "00")
-        app.pickers["durationPicker"].pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "00")
-        XCTAssertFalse(app.buttons["Save"].isEnabled)
+        durationPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "00")
+        durationPicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "00")
+        durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "00")
+        XCTAssertFalse(app.buttons["saveButton"].isEnabled)
     }
 
     func testWhenNameNotEmptyAndDurationEmptyThenDisableSaveButton() {
-        app.pickers["durationPicker"].pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "00")
-        app.pickers["durationPicker"].pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "00")
-        app.pickers["durationPicker"].pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "00")
-        XCTAssertFalse(app.buttons["Save"].isEnabled)
+        let durationPicker = app.pickers["durationPicker"]
+        durationPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "00")
+        durationPicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "00")
+        durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "00")
+        XCTAssertFalse(app.buttons["saveButton"].isEnabled)
     }
     
     func testWhenNameEmptyAndDurationNotEmptyThenDisableSaveButton() {
         app.textFields["nameTextField"].tap()
         app.buttons["Clear text"].tap()
         app.buttons["Done"].tap()
-        XCTAssertFalse(app.buttons["Save"].isEnabled)
+        XCTAssertFalse(app.buttons["saveButton"].isEnabled)
     }
     
     func testWhenNameNotEmptyAndDurationNotEmptyThenEnableSaveButton() {
-        XCTAssertTrue(app.buttons["Save"].isEnabled)
+        let nameTextField = app.textFields["nameTextField"]
+        let durationPicker = app.pickers["durationPicker"]
+        nameTextField.tap()
+        app.buttons["Clear text"].tap()
+        nameTextField.typeText(preset.name)
+        app.buttons["Done"].tap()
+        durationPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: String(format: "%02d", preset.hours))
+        durationPicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: String(format: "%02d", preset.minutes))
+        durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: String(format: "%02d", preset.seconds))
+        XCTAssertTrue(app.buttons["saveButton"].isEnabled)
     }
     
     func testGivenSaveButtonEnabledWhenClickedThenSave() {
-        let value = app.textFields["nameTextField"].value as! String
-        app.textFields["nameTextField"].tap()
-        app.textFields["nameTextField"].typeText("Test")
+        let nameTextField = app.textFields["nameTextField"]
+        let durationPicker = app.pickers["durationPicker"]
+        nameTextField.tap()
+        app.buttons["Clear text"].tap()
+        nameTextField.typeText(preset.name)
         app.buttons["Done"].tap()
-        app.buttons["Save"].tap()
-        XCTAssertTrue(app.staticTexts[value + "Test"].exists)
+        durationPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: String(format: "%02d", preset.hours))
+        durationPicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: String(format: "%02d", preset.minutes))
+        durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: String(format: "%02d", preset.seconds))
+        app.buttons["saveButton"].tap()
+        XCTAssertEqual(app.staticTexts["nameLabel"].label, preset.name)
+        XCTAssertEqual(app.staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
     }
 }
