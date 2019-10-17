@@ -63,6 +63,7 @@ class NewPresetTests: XCTestCase {
     func testGivenSaveButtonEnabledWhenClickedThenSave() {
         let nameTextField = app.textFields["nameTextField"]
         let durationPicker = app.pickers["durationPicker"]
+        let cell = app.tables.cells.element(boundBy: 1)
         nameTextField.tap()
         nameTextField.typeText(preset.name)
         app.buttons["Done"].tap()
@@ -71,7 +72,7 @@ class NewPresetTests: XCTestCase {
         durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: String(format: "%02d", preset.seconds))
         app.buttons["saveButton"].tap()
         XCTAssertEqual(app.tables.cells.count, 11)
-        XCTAssertEqual(app.tables.cells.element(boundBy: 1).staticTexts["nameLabel"].label, preset.name)
-        XCTAssertEqual(app.tables.cells.element(boundBy: 1).staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
+        XCTAssertEqual(cell.staticTexts["nameLabel"].label, preset.name)
+        XCTAssertEqual(cell.staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
     }
 }
