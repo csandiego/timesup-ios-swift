@@ -21,6 +21,7 @@
 		E8FA74BB2352A6CE00334F58 /* TimesUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74BA2352A6CE00334F58 /* TimesUpTests.swift */; };
 		E8FB87222356B6C50040441F /* EditPresetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB87212356B6C40040441F /* EditPresetTests.swift */; };
 		E8FFC122235827390038049E /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFC121235827390038049E /* TimerTests.swift */; };
+		E8FFC12423582DDE0038049E /* PresetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFC12323582DDE0038049E /* PresetsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		E8FA74C72352A6CF00334F58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FB87212356B6C40040441F /* EditPresetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresetTests.swift; sourceTree = "<group>"; };
 		E8FFC121235827390038049E /* TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
+		E8FFC12323582DDE0038049E /* PresetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		E8FA74C42352A6CF00334F58 /* TimesUpUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E8FFC12323582DDE0038049E /* PresetsTests.swift */,
 				E8FFC121235827390038049E /* TimerTests.swift */,
 				E8FB87212356B6C40040441F /* EditPresetTests.swift */,
 				E87D64732355C01700EA154B /* NewPresetTests.swift */,
@@ -301,6 +304,7 @@
 			files = (
 				E8FB87222356B6C50040441F /* EditPresetTests.swift in Sources */,
 				E87D64742355C01700EA154B /* NewPresetTests.swift in Sources */,
+				E8FFC12423582DDE0038049E /* PresetsTests.swift in Sources */,
 				E8FFC122235827390038049E /* TimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
