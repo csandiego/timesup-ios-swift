@@ -62,15 +62,11 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
     }
     
     @IBAction func save(_ sender: Any) {
-        let context = persistentContainer.newBackgroundContext()
-        let preset = context.object(with: self.preset.objectID) as! Preset
         preset.name = name.text
         preset.hours = Int64(duration.selectedRow(inComponent: 0))
         preset.minutes = Int64(duration.selectedRow(inComponent: 1))
         preset.seconds = Int64(duration.selectedRow(inComponent: 2))
-        context.perform {
-            try! context.save()
-        }
+        try! persistentContainer.viewContext.save()
         navigationController!.popViewController(animated: true)
     }
 }
