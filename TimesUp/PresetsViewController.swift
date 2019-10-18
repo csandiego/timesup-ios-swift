@@ -50,10 +50,12 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     func swipeActionConfigurationForRowAt(_ tableView: UITableView, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Delete") {
             action, sourceView, completionHandler in
-            let preset = self.fetchedResultsController.object(at: indexPath)
-            let context = self.persistentContainer.viewContext
+            let context = self.persistentContainer.newBackgroundContext()
+            let preset = context.object(with: self.fetchedResultsController.object(at: indexPath).objectID)
             context.delete(preset)
-            try! context.save()
+            context.perform {
+                try! context.save()
+            }
             completionHandler(true)
         }
         let config = UISwipeActionsConfiguration(actions: [action])

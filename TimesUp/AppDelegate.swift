@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if CommandLine.arguments.contains("--test-mode") {
             let description = NSPersistentStoreDescription()
             description.type = NSInMemoryStoreType
-            description.shouldAddStoreAsynchronously = false
             container.persistentStoreDescriptions = [description]
         }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -66,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        try! container.viewContext.setQueryGenerationFrom(.current)
+        container.viewContext.automaticallyMergesChangesFromParent = true
         if try! container.viewContext.count(for: Preset.fetchRequest()) < 1 {
             for i in 1...10 {
                 let preset = Preset(context: container.viewContext)
