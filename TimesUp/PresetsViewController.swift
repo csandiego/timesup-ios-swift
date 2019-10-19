@@ -16,7 +16,6 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         let request: NSFetchRequest<Preset> = Preset.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(
@@ -25,40 +24,8 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-        try! fetchedResultsController.performFetch()
         fetchedResultsController.delegate = self
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController.sections![section].numberOfObjects
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
-        bindCell(cell, indexPath)
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return swipeActionConfigurationForRowAt(tableView, indexPath: indexPath)
-    }
-    
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        return swipeActionConfigurationForRowAt(tableView, indexPath: indexPath)
-    }
-    
-    func swipeActionConfigurationForRowAt(_ tableView: UITableView, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: "Delete") {
-            action, sourceView, completionHandler in
-            let preset = self.fetchedResultsController.object(at: indexPath)
-            let context = self.persistentContainer.viewContext
-            context.delete(preset)
-            try! context.save()
-            completionHandler(true)
-        }
-        let config = UISwipeActionsConfiguration(actions: [action])
-        config.performsFirstActionWithFullSwipe = true
-        return config
+        try! fetchedResultsController.performFetch()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,6 +40,39 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         default:
             break
         }
+    }
+    
+    func bindCell(_ cell: UITableViewCell, _ indexPath: IndexPath) {
+        let preset = fetchedResultsController.object(at: indexPath)
+        cell.textLabel!.text = preset.name
+        cell.detailTextLabel!.text = String(
+            format: "%02d:%02d:%02d",
+            preset.hours,
+            preset.minutes,
+            preset.seconds
+        )
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fetchedResultsController.sections![section].numberOfObjects
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
+        bindCell(cell, indexPath)
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete")) { _, _, completionHandler in
+            let context = self.persistentContainer.viewContext
+            context.delete(self.fetchedResultsController.object(at: indexPath))
+            try! context.save()
+            completionHandler(true)
+        }
+        let config = UISwipeActionsConfiguration(actions: [action])
+        config.performsFirstActionWithFullSwipe = true
+        return config
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -90,25 +90,13 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
-            let cell = tableView.cellForRow(at: indexPath!)!
-            bindCell(cell, indexPath!)
+            bindCell(tableView.cellForRow(at: indexPath!)!, indexPath!)
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [newIndexPath!], with: .fade)
-        @unknown default:
+        default:
             break
         }
-    }
-    
-    func bindCell(_ cell: UITableViewCell, _ indexPath: IndexPath) {
-        let preset = fetchedResultsController.object(at: indexPath)
-        cell.textLabel!.text = preset.name
-        cell.detailTextLabel!.text = String(
-            format: "%02d:%02d:%02d",
-            preset.hours,
-            preset.minutes,
-            preset.seconds
-        )
     }
 }
 

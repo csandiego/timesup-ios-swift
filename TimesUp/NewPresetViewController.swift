@@ -12,18 +12,15 @@ import CoreData
 class NewPresetViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var persistentContainer: NSPersistentContainer!
-
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var duration: UIPickerView!
     @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         name.delegate = self
         duration.dataSource = self
         duration.delegate = self
-        
         saveButton.isEnabled = isValid()
     }
     
@@ -31,6 +28,17 @@ class NewPresetViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         return name.text?.count ?? 0 > 0 && duration.selectedRow(inComponent: 0) + duration.selectedRow(inComponent: 1) + duration.selectedRow(inComponent: 2) > 0
     }
     
+    @IBAction func save(_ sender: Any) {
+        let context = persistentContainer.viewContext
+        let preset = Preset(context: context)
+        preset.name = name.text
+        preset.hours = Int64(duration.selectedRow(inComponent: 0))
+        preset.minutes = Int64(duration.selectedRow(inComponent: 1))
+        preset.seconds = Int64(duration.selectedRow(inComponent: 2))
+        try! context.save()
+        navigationController!.popViewController(animated: true)
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -54,15 +62,5 @@ class NewPresetViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         saveButton.isEnabled = isValid()
-    }
-    
-    @IBAction func save(_ sender: Any) {
-        let preset = Preset(context: persistentContainer.viewContext)
-        preset.name = name.text
-        preset.hours = Int64(duration.selectedRow(inComponent: 0))
-        preset.minutes = Int64(duration.selectedRow(inComponent: 1))
-        preset.seconds = Int64(duration.selectedRow(inComponent: 2))
-        try! persistentContainer.viewContext.save()
-        navigationController!.popViewController(animated: true)
     }
 }

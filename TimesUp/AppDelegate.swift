@@ -65,15 +65,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        try! container.viewContext.setQueryGenerationFrom(.current)
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        if try! container.viewContext.count(for: Preset.fetchRequest()) < 1 {
+        let context = container.viewContext
+        try! context.setQueryGenerationFrom(.current)
+        context.automaticallyMergesChangesFromParent = true
+        if try! context.count(for: Preset.fetchRequest()) < 1 {
             for i in 1...10 {
-                let preset = Preset(context: container.viewContext)
+                let preset = Preset(context: context)
                 preset.name = String(format: "%02d minutes", i)
                 preset.minutes = Int64(i)
             }
-            try! container.viewContext.save()
+            try! context.save()
         }
         return container
     }()

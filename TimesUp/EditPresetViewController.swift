@@ -13,18 +13,15 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     var persistentContainer: NSPersistentContainer!
     var preset: Preset!
-
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var duration: UIPickerView!
     @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         name.delegate = self
         duration.dataSource = self
         duration.delegate = self
-        
         name.text = preset.name
         duration.selectRow(Int(preset.hours), inComponent: 0, animated: false)
         duration.selectRow(Int(preset.minutes), inComponent: 1, animated: false)
@@ -36,6 +33,15 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
         return name.text?.count ?? 0 > 0 && duration.selectedRow(inComponent: 0) + duration.selectedRow(inComponent: 1) + duration.selectedRow(inComponent: 2) > 0
     }
     
+    @IBAction func save(_ sender: Any) {
+        preset.name = name.text
+        preset.hours = Int64(duration.selectedRow(inComponent: 0))
+        preset.minutes = Int64(duration.selectedRow(inComponent: 1))
+        preset.seconds = Int64(duration.selectedRow(inComponent: 2))
+        try! persistentContainer.viewContext.save()
+        navigationController!.popViewController(animated: true)
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -59,14 +65,5 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         saveButton.isEnabled = isValid()
-    }
-    
-    @IBAction func save(_ sender: Any) {
-        preset.name = name.text
-        preset.hours = Int64(duration.selectedRow(inComponent: 0))
-        preset.minutes = Int64(duration.selectedRow(inComponent: 1))
-        preset.seconds = Int64(duration.selectedRow(inComponent: 2))
-        try! persistentContainer.viewContext.save()
-        navigationController!.popViewController(animated: true)
     }
 }
