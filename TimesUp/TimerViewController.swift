@@ -11,7 +11,6 @@ import CoreData
 
 class TimerViewController: UIViewController {
     
-    var persistentContainer: NSPersistentContainer!
     var preset: Preset!
     var counter = 0
     var timer: Timer!
@@ -35,17 +34,6 @@ class TimerViewController: UIViewController {
         pauseButton.isEnabled = false
         resetButton.isEnabled = false
         print("Loaded")
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "editPreset":
-            let viewController = segue.destination as! EditPresetViewController
-            viewController.persistentContainer = persistentContainer
-            viewController.preset = preset
-        default:
-            break
-        }
     }
     
     @IBAction func start(_ sender: Any) {

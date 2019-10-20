@@ -25,7 +25,7 @@ class NewPresetTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments = ["--test-mode"]
         app.launch()
-        app.navigationBars["Presets"].buttons["newBarButtonItem"].tap()
+        app.toolbars["Toolbar"].buttons["newBarButtonItem"].tap()
     }
 
     func testWhenNameEmptyAndDurationEmptyThenDisableSaveButton() {

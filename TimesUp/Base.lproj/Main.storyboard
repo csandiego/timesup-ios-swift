@@ -45,9 +45,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="BgH-EV-gGO" kind="show" identifier="showTimer" id="gGa-Dq-6Ee"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -55,16 +52,23 @@
                             <outlet property="delegate" destination="wOv-A3-xzd" id="xVo-ai-Lgu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Presets" largeTitleDisplayMode="always" id="HEt-4c-01I">
-                        <barButtonItem key="rightBarButtonItem" title="New" id="EqW-bU-zvv">
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Fxf-GZ-F62"/>
+                        <barButtonItem title="New" id="ldp-iM-hlM">
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="newBarButtonItem"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <segue destination="csp-9V-ZZ2" kind="show" identifier="newPreset" id="gjb-Jy-WYs"/>
+                                <segue destination="csp-9V-ZZ2" kind="show" identifier="newPreset" id="eOf-S6-Ghi"/>
                             </connections>
                         </barButtonItem>
-                    </navigationItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Presets" largeTitleDisplayMode="always" id="HEt-4c-01I"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="BgH-EV-gGO" kind="show" identifier="showTimer" id="pKS-1m-LAv"/>
+                        <segue destination="9Fk-KA-3l4" kind="show" identifier="editPreset" id="jgH-Qn-Dsh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-55-d5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,7 +83,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-Q9-axs">
-                                <rect key="frame" x="190" y="615" width="34" height="30"/>
+                                <rect key="frame" x="190" y="590.5" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="saveButton"/>
@@ -89,13 +93,13 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUc-eb-cEp">
-                                <rect key="frame" x="16" y="367" width="382" height="216"/>
+                                <rect key="frame" x="16" y="342.5" width="382" height="216"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="durationPicker"/>
                                 </userDefinedRuntimeAttributes>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqk-Cf-e2v" userLabel="Name">
-                                <rect key="frame" x="16" y="301" width="382" height="34"/>
+                                <rect key="frame" x="16" y="276.5" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <userDefinedRuntimeAttributes>
@@ -125,12 +129,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZg-ZL-FE4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="846"/>
+            <point key="canvasLocation" x="1796" y="-597"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="jS1-7u-2N2">
             <objects>
-                <viewController id="BgH-EV-gGO" customClass="TimerViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="BgH-EV-gGO" customClass="TimerViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EEA-Ze-ejR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,16 +206,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kOs-AO-jGK"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="pgG-dO-NXj">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="xTn-Zf-8iO">
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="editBarButtonItem"/>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <segue destination="9Fk-KA-3l4" kind="show" identifier="editPreset" id="h4s-Zr-EJM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="pgG-dO-NXj"/>
                     <connections>
                         <outlet property="duration" destination="8i0-XO-lYU" id="0HR-JQ-zRX"/>
                         <outlet property="name" destination="GUO-vL-5Pp" id="8gE-Gn-A6v"/>
@@ -222,18 +217,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDG-vB-0Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2778" y="90"/>
+            <point key="canvasLocation" x="2774" y="90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="74h-GV-coX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tOR-ok-Hm6" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="tOR-ok-Hm6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="vVn-xA-O0u">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4KA-wK-QMs">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="wOv-A3-xzd" kind="relationship" relationship="rootViewController" id="FD3-8x-cnR"/>
                     </connections>
@@ -251,7 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4Q-Mv-eam">
-                                <rect key="frame" x="190" y="615" width="34" height="30"/>
+                                <rect key="frame" x="190" y="590.5" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="saveButton"/>
@@ -261,13 +260,13 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6u-IO-dl9">
-                                <rect key="frame" x="16" y="367" width="382" height="216"/>
+                                <rect key="frame" x="16" y="342.5" width="382" height="216"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="durationPicker"/>
                                 </userDefinedRuntimeAttributes>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4Ql-wT-idr" userLabel="Name">
-                                <rect key="frame" x="16" y="301" width="382" height="34"/>
+                                <rect key="frame" x="16" y="276.5" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <userDefinedRuntimeAttributes>
@@ -297,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRV-Km-7fO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2777" y="846"/>
+            <point key="canvasLocation" x="1796" y="826"/>
         </scene>
     </scenes>
 </document>

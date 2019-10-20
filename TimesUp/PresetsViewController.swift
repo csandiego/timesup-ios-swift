@@ -26,6 +26,8 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         )
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
+        tableView.allowsSelectionDuringEditing = true
+        navigationItem.setRightBarButton(editButtonItem, animated: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -35,6 +37,9 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
             viewController.persistentContainer = persistentContainer
         case "showTimer":
             let viewController = segue.destination as! TimerViewController
+            viewController.preset = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
+        case "editPreset":
+            let viewController = segue.destination as! EditPresetViewController
             viewController.persistentContainer = persistentContainer
             viewController.preset = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
         default:
@@ -73,6 +78,10 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         let config = UISwipeActionsConfiguration(actions: [action])
         config.performsFirstActionWithFullSwipe = true
         return config
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: isEditing ? "editPreset" : "showTimer", sender: self)
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

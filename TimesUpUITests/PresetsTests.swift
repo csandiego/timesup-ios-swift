@@ -21,13 +21,19 @@ class PresetsTests: XCTestCase {
     }
 
     func testWhenNewBarButtonItemTappedThenNavigateToNewPreset() {
-        app.navigationBars["Presets"].buttons["newBarButtonItem"].tap()
+        app.toolbars["Toolbar"].buttons["newBarButtonItem"].tap()
         XCTAssertTrue(app.navigationBars["TimesUp.NewPresetView"].exists)
     }
     
-    func testWhenPresetTappedThenNavigationToTimer() {
+    func testGivenNotInEditModeWhenPresetTappedThenNavigateToTimer() {
         app.tables.cells.element(boundBy: 0).tap()
         XCTAssertTrue(app.navigationBars["TimesUp.TimerView"].exists)
+    }
+    
+    func testGivenInEditModeWhenPresetTappedThenNavigateToEditPreset() {
+        app.navigationBars["Presets"].buttons["Edit"].tap()
+        app.tables.cells.element(boundBy: 0).tap()
+        XCTAssertTrue(app.navigationBars["TimesUp.EditPresetView"].exists)
     }
     
     func testWhenPresetSwipeLeftThenShowSwipeActions() {
