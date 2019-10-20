@@ -13,7 +13,8 @@ class TimerViewController: UIViewController {
     
     var preset: Preset!
     var counter = 0
-    var timer: Timer!
+    var timer: Timer?
+    var suspendedAt: Date?
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var duration: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -33,41 +34,63 @@ class TimerViewController: UIViewController {
         startButton.isEnabled = true
         pauseButton.isEnabled = false
         resetButton.isEnabled = false
-        print("Loaded")
+        NotificationCenter.default.addObserver(self, selector: #selector(suspend), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(awake), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
-    @IBAction func start(_ sender: Any) {
-        startButton.isEnabled = false
-        pauseButton.isEnabled = true
-        resetButton.isEnabled = false
-        print("Started")
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if self.counter == 0 {
-                self.pause(sender)
-                return
-            }
+    @objc func suspend() {
+        if let timer = timer {
+            suspendedAt = Date()
+            timer.invalidate()
+            self.timer = nil
+        }
+    }
+    
+    @objc func awake() {
+        if let suspendedAt = suspendedAt {
+            counter += Int(suspendedAt.timeIntervalSinceNow)
+            timer = createTimer()
+            self.suspendedAt = nil
+        }
+    }
+    
+    func createTimer() -> Timer {
+        return Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.counter -= 1
             let hours = self.counter / (60 * 60)
             let rem = self.counter % (60 * 60)
             let minutes = rem / 60
             let seconds = rem % 60
             self.duration.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            if self.counter == 0 {
+                self.startButton.isEnabled = false
+                self.pauseButton.isEnabled = false
+                self.resetButton.isEnabled = true
+                self.timer?.invalidate()
+                self.timer = nil
+            }
         }
+    }
+    
+    @IBAction func start(_ sender: Any) {
+        startButton.isEnabled = false
+        pauseButton.isEnabled = true
+        resetButton.isEnabled = false
+        timer = createTimer()
     }
     
     @IBAction func pause(_ sender: Any) {
         startButton.isEnabled = true
         pauseButton.isEnabled = false
         resetButton.isEnabled = true
-        print("Paused")
-        timer.invalidate()
+        timer?.invalidate()
+        timer = nil
     }
     
     @IBAction func reset(_ sender: Any) {
         startButton.isEnabled = true
         pauseButton.isEnabled = false
         resetButton.isEnabled = false
-        print("Reset")
         duration.text = String(
             format: "%02d:%02d:%02d",
             preset.hours,
