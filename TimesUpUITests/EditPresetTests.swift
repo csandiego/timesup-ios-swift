@@ -68,18 +68,18 @@ class EditPresetTests: XCTestCase {
         XCTAssertTrue(app.buttons["saveButton"].isEnabled)
     }
     
-    func testGivenSaveButtonEnabledWhenClickedThenSave() {
-        let nameTextField = app.textFields["nameTextField"]
-        let durationPicker = app.pickers["durationPicker"]
-        nameTextField.tap()
-        app.buttons["Clear text"].tap()
-        nameTextField.typeText(preset.name)
-        app.buttons["Done"].tap()
-        durationPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: String(format: "%02d", preset.hours))
-        durationPicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: String(format: "%02d", preset.minutes))
-        durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: String(format: "%02d", preset.seconds))
-        app.buttons["saveButton"].tap()
-        XCTAssertEqual(app.staticTexts["nameLabel"].label, preset.name)
-        XCTAssertEqual(app.staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
-    }
+//    func testGivenSaveButtonEnabledWhenClickedThenSave() {
+//        let nameTextField = app.textFields["nameTextField"]
+//        let durationPicker = app.pickers["durationPicker"]
+//        nameTextField.tap()
+//        app.buttons["Clear text"].tap()
+//        nameTextField.typeText(preset.name)
+//        app.buttons["Done"].tap()
+//        durationPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: String(format: "%02d", preset.hours))
+//        durationPicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: String(format: "%02d", preset.minutes))
+//        durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: String(format: "%02d", preset.seconds))
+//        app.buttons["saveButton"].tap()
+//        XCTAssertEqual(app.staticTexts["nameLabel"].label, preset.name)
+//        XCTAssertEqual(app.staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
+//    }
 }

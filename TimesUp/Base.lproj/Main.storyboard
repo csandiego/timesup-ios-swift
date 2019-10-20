@@ -157,6 +157,32 @@
                                 <rect key="frame" x="173.5" y="545.5" width="67" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Start"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="startButton"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="start:" destination="BgH-EV-gGO" eventType="touchUpInside" id="3up-fE-uPD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kH-IF-2wV">
+                                <rect key="frame" x="67.5" y="556" width="42" height="30"/>
+                                <state key="normal" title="Pause"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="pauseButton"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="pause:" destination="BgH-EV-gGO" eventType="touchUpInside" id="J4U-Tt-Gvu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WB5-ve-v0Z">
+                                <rect key="frame" x="304.5" y="556" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="resetButton"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reset:" destination="BgH-EV-gGO" eventType="touchUpInside" id="xcA-V2-Ka2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -164,9 +190,15 @@
                             <constraint firstItem="8i0-XO-lYU" firstAttribute="top" secondItem="GUO-vL-5Pp" secondAttribute="bottom" constant="32" id="AiF-DP-9f1"/>
                             <constraint firstItem="KyV-G2-VQ9" firstAttribute="centerX" secondItem="kOs-AO-jGK" secondAttribute="centerX" id="BTG-Qs-FYA"/>
                             <constraint firstItem="GUO-vL-5Pp" firstAttribute="centerX" secondItem="kOs-AO-jGK" secondAttribute="centerX" id="Ced-nC-uve"/>
+                            <constraint firstItem="5kH-IF-2wV" firstAttribute="centerY" secondItem="KyV-G2-VQ9" secondAttribute="centerY" id="FFT-49-F66"/>
+                            <constraint firstItem="WB5-ve-v0Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KyV-G2-VQ9" secondAttribute="trailing" constant="8" symbolic="YES" id="S87-D6-EQ1"/>
                             <constraint firstItem="8i0-XO-lYU" firstAttribute="centerY" secondItem="kOs-AO-jGK" secondAttribute="centerY" id="TGY-wd-83o"/>
+                            <constraint firstItem="kOs-AO-jGK" firstAttribute="trailing" secondItem="WB5-ve-v0Z" secondAttribute="trailing" constant="70.5" id="UKO-tW-z2k"/>
+                            <constraint firstItem="KyV-G2-VQ9" firstAttribute="leading" secondItem="5kH-IF-2wV" secondAttribute="trailing" constant="64" id="kou-Cj-jwn"/>
+                            <constraint firstItem="WB5-ve-v0Z" firstAttribute="centerY" secondItem="KyV-G2-VQ9" secondAttribute="centerY" id="rgl-Yd-dTr"/>
                             <constraint firstItem="KyV-G2-VQ9" firstAttribute="top" secondItem="8i0-XO-lYU" secondAttribute="bottom" constant="32" id="uHQ-Yl-KtV"/>
                             <constraint firstItem="8i0-XO-lYU" firstAttribute="centerX" secondItem="kOs-AO-jGK" secondAttribute="centerX" id="xP8-6W-UZh"/>
+                            <constraint firstItem="5kH-IF-2wV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kOs-AO-jGK" secondAttribute="leading" symbolic="YES" id="yXd-kp-psm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kOs-AO-jGK"/>
                     </view>
@@ -183,6 +215,9 @@
                     <connections>
                         <outlet property="duration" destination="8i0-XO-lYU" id="0HR-JQ-zRX"/>
                         <outlet property="name" destination="GUO-vL-5Pp" id="8gE-Gn-A6v"/>
+                        <outlet property="pauseButton" destination="5kH-IF-2wV" id="Dpa-Qi-suh"/>
+                        <outlet property="resetButton" destination="WB5-ve-v0Z" id="bvP-Fb-Q4o"/>
+                        <outlet property="startButton" destination="KyV-G2-VQ9" id="U2T-nr-GwS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDG-vB-0Ar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
