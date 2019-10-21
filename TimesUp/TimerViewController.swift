@@ -36,6 +36,8 @@ class TimerViewController: UIViewController {
         resetButton.isEnabled = false
         NotificationCenter.default.addObserver(self, selector: #selector(suspend), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(awake), name: UIApplication.didBecomeActiveNotification, object: nil)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _,_ in
+        }
     }
     
     @objc func suspend() {
@@ -49,7 +51,14 @@ class TimerViewController: UIViewController {
     @objc func awake() {
         if let suspendedAt = suspendedAt {
             counter += Int(suspendedAt.timeIntervalSinceNow)
-            timer = createTimer()
+            if counter > 0 {
+                timer = createTimer()
+            } else {
+                duration.text = "00:00:00"
+                startButton.isEnabled = false
+                pauseButton.isEnabled = false
+                resetButton.isEnabled = true
+            }
             self.suspendedAt = nil
         }
     }
@@ -77,6 +86,21 @@ class TimerViewController: UIViewController {
         pauseButton.isEnabled = true
         resetButton.isEnabled = false
         timer = createTimer()
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            if settings.alertSetting == .enabled {
+                let content = UNMutableNotificationContent()
+                content.title = self.preset.name!
+                content.sound = UNNotificationSound.default
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(self.counter), repeats: false)
+                let request = UNNotificationRequest(identifier: "TimesUp.TimerViewController", content: content, trigger: trigger)
+                notificationCenter.add(request) { error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func pause(_ sender: Any) {
@@ -85,6 +109,7 @@ class TimerViewController: UIViewController {
         resetButton.isEnabled = true
         timer?.invalidate()
         timer = nil
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["TimesUp.TimerViewController"])
     }
     
     @IBAction func reset(_ sender: Any) {
