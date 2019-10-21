@@ -1,5 +1,5 @@
 //
-//  TimerTests.swift
+//  TimerUITests.swift
 //  TimesUpUITests
 //
 //  Created by Christopher San Diego on 10/17/19.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class TimerTests: XCTestCase {
+class TimerUITests: XCTestCase {
     
     var app: XCUIApplication!
     

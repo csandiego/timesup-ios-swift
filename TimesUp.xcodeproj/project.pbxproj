@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E87D64742355C01700EA154B /* NewPresetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87D64732355C01700EA154B /* NewPresetTests.swift */; };
+		E87D64742355C01700EA154B /* NewPresetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87D64732355C01700EA154B /* NewPresetUITests.swift */; };
 		E889964023541C6400F057A0 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889963F23541C6400F057A0 /* TimerViewController.swift */; };
 		E88996422354237400F057A0 /* NewPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88996412354237400F057A0 /* NewPresetViewController.swift */; };
 		E8899644235530AE00F057A0 /* EditPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8899643235530AE00F057A0 /* EditPresetViewController.swift */; };
@@ -19,9 +19,9 @@
 		E8FA74AD2352A6CE00334F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FA74AC2352A6CE00334F58 /* Assets.xcassets */; };
 		E8FA74B02352A6CE00334F58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FA74AE2352A6CE00334F58 /* LaunchScreen.storyboard */; };
 		E8FA74BB2352A6CE00334F58 /* TimesUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74BA2352A6CE00334F58 /* TimesUpTests.swift */; };
-		E8FB87222356B6C50040441F /* EditPresetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB87212356B6C40040441F /* EditPresetTests.swift */; };
-		E8FFC122235827390038049E /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFC121235827390038049E /* TimerTests.swift */; };
-		E8FFC12423582DDE0038049E /* PresetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFC12323582DDE0038049E /* PresetsTests.swift */; };
+		E8FB87222356B6C50040441F /* EditPresetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB87212356B6C40040441F /* EditPresetUITests.swift */; };
+		E8FFC122235827390038049E /* TimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFC121235827390038049E /* TimerUITests.swift */; };
+		E8FFC12423582DDE0038049E /* PresetsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFC12323582DDE0038049E /* PresetsUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E87D64732355C01700EA154B /* NewPresetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetTests.swift; sourceTree = "<group>"; };
+		E87D64732355C01700EA154B /* NewPresetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetUITests.swift; sourceTree = "<group>"; };
 		E889963F23541C6400F057A0 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E88996412354237400F057A0 /* NewPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetViewController.swift; sourceTree = "<group>"; };
 		E8899643235530AE00F057A0 /* EditPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresetViewController.swift; sourceTree = "<group>"; };
@@ -60,9 +60,9 @@
 		E8FA74BC2352A6CF00334F58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FA74C12352A6CF00334F58 /* TimesUpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimesUpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FA74C72352A6CF00334F58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8FB87212356B6C40040441F /* EditPresetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresetTests.swift; sourceTree = "<group>"; };
-		E8FFC121235827390038049E /* TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
-		E8FFC12323582DDE0038049E /* PresetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsTests.swift; sourceTree = "<group>"; };
+		E8FB87212356B6C40040441F /* EditPresetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresetUITests.swift; sourceTree = "<group>"; };
+		E8FFC121235827390038049E /* TimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUITests.swift; sourceTree = "<group>"; };
+		E8FFC12323582DDE0038049E /* PresetsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,10 +140,10 @@
 		E8FA74C42352A6CF00334F58 /* TimesUpUITests */ = {
 			isa = PBXGroup;
 			children = (
-				E8FFC12323582DDE0038049E /* PresetsTests.swift */,
-				E8FFC121235827390038049E /* TimerTests.swift */,
-				E8FB87212356B6C40040441F /* EditPresetTests.swift */,
-				E87D64732355C01700EA154B /* NewPresetTests.swift */,
+				E8FFC12323582DDE0038049E /* PresetsUITests.swift */,
+				E8FFC121235827390038049E /* TimerUITests.swift */,
+				E8FB87212356B6C40040441F /* EditPresetUITests.swift */,
+				E87D64732355C01700EA154B /* NewPresetUITests.swift */,
 				E8FA74C72352A6CF00334F58 /* Info.plist */,
 			);
 			path = TimesUpUITests;
@@ -302,10 +302,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FB87222356B6C50040441F /* EditPresetTests.swift in Sources */,
-				E87D64742355C01700EA154B /* NewPresetTests.swift in Sources */,
-				E8FFC12423582DDE0038049E /* PresetsTests.swift in Sources */,
-				E8FFC122235827390038049E /* TimerTests.swift in Sources */,
+				E8FB87222356B6C50040441F /* EditPresetUITests.swift in Sources */,
+				E87D64742355C01700EA154B /* NewPresetUITests.swift in Sources */,
+				E8FFC12423582DDE0038049E /* PresetsUITests.swift in Sources */,
+				E8FFC122235827390038049E /* TimerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

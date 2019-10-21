@@ -1,5 +1,5 @@
 //
-//  PresetsTests.swift
+//  PresetsUITests.swift
 //  TimesUpUITests
 //
 //  Created by Christopher San Diego on 10/17/19.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class PresetsTests: XCTestCase {
+class PresetsUITests: XCTestCase {
 
     var app: XCUIApplication!
     
