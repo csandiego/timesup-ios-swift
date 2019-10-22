@@ -91,4 +91,21 @@ class EditPresetUITests: XCTestCase {
         XCTAssertEqual(durationPicker.pickerWheels.element(boundBy: 1).value as! String?, "01")
         XCTAssertEqual(durationPicker.pickerWheels.element(boundBy: 2).value as! String?, "00")
     }
+    
+    func testGivenNameWithDifferentSortingPlacementWhenSaveThenMoveCell() {
+        let name = "1 hours"
+        let nameTextField = app.textFields["nameTextField"]
+        let durationPicker = app.pickers["durationPicker"]
+        let cell = app.tables.cells.element(boundBy: 9)
+        nameTextField.tap()
+        app.buttons["Clear text"].tap()
+        nameTextField.typeText(name)
+        app.buttons["Done"].tap()
+        durationPicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: String(format: "%02d", preset.hours))
+        durationPicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: String(format: "%02d", preset.minutes))
+        durationPicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: String(format: "%02d", preset.seconds))
+        app.buttons["saveButton"].tap()
+        XCTAssertEqual(cell.staticTexts["nameLabel"].label, name)
+        XCTAssertEqual(cell.staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
+    }
 }
