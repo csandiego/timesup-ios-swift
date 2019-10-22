@@ -118,4 +118,12 @@ class TimerViewController: UIViewController {
         )
         counter = Int(preset.hours) * 60 * 60 + Int(preset.minutes) * 60 + Int(preset.seconds)
     }
+    
+    override func didMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            timer?.invalidate()
+            timer = nil
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["TimesUp.TimerViewController"])
+        }
+    }
 }

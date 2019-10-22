@@ -55,7 +55,7 @@ class TimerTests: XCTestCase {
     
     func testGivenStartedWhenPausedThenRemoveNotification() {
         controller.start(self)
-        let expectation = self.expectation(description: "Add notification")
+        let expectation = self.expectation(description: "Remove notification")
         let userNotificationCenter = UNUserNotificationCenter.current()
         userNotificationCenter.getNotificationSettings { _ in
             userNotificationCenter.getPendingNotificationRequests { r in
@@ -90,5 +90,25 @@ class TimerTests: XCTestCase {
         controller.didEnterBackground()
         controller.didBecomeActive()
         XCTAssertNotNil(controller.timer)
+    }
+    
+    func testGivenStartedWhenDidMoveThenRemoveNotification() {
+        controller.start(self)
+        controller.didMove(toParent: nil)
+        let expectation = self.expectation(description: "Remove notification")
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            let found = requests.first { r in
+                return r.identifier == "TimesUp.TimerViewController"
+            }
+            XCTAssertNil(found)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testGivenStartedWhenDidMoveThenTimerNil() {
+        controller.start(self)
+        controller.didMove(toParent: nil)
+        XCTAssertNil(controller.timer)
     }
 }
