@@ -50,10 +50,15 @@ class PresetsUITests: XCTestCase {
     }
     
     func testWhenLoadedThenDisplayByNameAscending() {
-        for i in 0..<10 {
+        var data: [(name: String, hours: Int, minutes: Int, seconds: Int)] = []
+        for i in 1...9 {
+            data += [(name: String(format: "%02d minutes", i), hours: 0, minutes: i, seconds: 0)]
+        }
+        data.insert((name: "02 seconds", hours: 0, minutes: 0, seconds: 2), at: 2)
+        for (i, preset) in data.enumerated() {
             let cell = app.tables.cells.element(boundBy: i)
-            XCTAssertEqual(cell.staticTexts["nameLabel"].label, String(format: "%02d minutes", i + 1))
-            XCTAssertEqual(cell.staticTexts["durationLabel"].label, String(format: "00:%02d:00", i + 1))
+            XCTAssertEqual(cell.staticTexts["nameLabel"].label, preset.name)
+            XCTAssertEqual(cell.staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
         }
     }
 }

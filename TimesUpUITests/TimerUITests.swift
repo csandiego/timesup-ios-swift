@@ -13,10 +13,10 @@ class TimerUITests: XCTestCase {
     var app: XCUIApplication!
     
     let preset = (
-        name: "01 minutes",
+        name: "02 seconds",
         hours: 0,
-        minutes: 1,
-        seconds: 0
+        minutes: 0,
+        seconds: 2
     )
 
     override func setUp() {
@@ -25,7 +25,7 @@ class TimerUITests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments = ["--test-mode"]
         app.launch()
-        app.tables.cells.element(boundBy: 0).tap()
+        app.tables.cells.element(boundBy: 2).tap()
     }
 
     func testWhenLoadedThenShowDetails() {
@@ -37,7 +37,7 @@ class TimerUITests: XCTestCase {
         app.buttons["startButton"].tap()
         let expectation = self.expectation(description: "Update duration")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            XCTAssertEqual(self.app.staticTexts["durationLabel"].label, "00:00:59")
+            XCTAssertEqual(self.app.staticTexts["durationLabel"].label, "00:00:01")
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2.0)
@@ -70,7 +70,11 @@ class TimerUITests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.app.buttons["pauseButton"].tap()
             self.app.buttons["resetButton"].tap()
-            XCTAssertEqual(self.app.staticTexts["durationLabel"].label, "00:01:00")
+            XCTAssertEqual(self.app.staticTexts["durationLabel"].label,
+                           String(format: "%02d:%02d:%02d",
+                                  self.preset.hours,
+                                  self.preset.minutes,
+                                  self.preset.seconds))
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2.0)
@@ -83,5 +87,35 @@ class TimerUITests: XCTestCase {
         XCTAssertTrue(app.buttons["startButton"].isEnabled)
         XCTAssertFalse(app.buttons["pauseButton"].isEnabled)
         XCTAssertFalse(app.buttons["resetButton"].isEnabled)
+    }
+    
+    func testGivenTimerExpiredThenUpdateDurationAndButtons() {
+        app.buttons["startButton"].tap()
+        let expectation = self.expectation(description: "Wait for expiration")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            XCTAssertEqual(self.app.staticTexts["durationLabel"].label, "00:00:00")
+            XCTAssertFalse(self.app.buttons["startButton"].isEnabled)
+            XCTAssertFalse(self.app.buttons["pauseButton"].isEnabled)
+            XCTAssertTrue(self.app.buttons["resetButton"].isEnabled)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3.0)
+    }
+    
+    func testGivenTimerExpiredInBackgroundWhenDidBecomeActiveThenUpdateDurationAndButtons() {
+        app.buttons["startButton"].tap()
+        XCUIDevice.shared.press(.home)
+        let expectation = self.expectation(description: "Activate")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.app.activate()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                XCTAssertEqual(self.app.staticTexts["durationLabel"].label, "00:00:00")
+                XCTAssertFalse(self.app.buttons["startButton"].isEnabled)
+                XCTAssertFalse(self.app.buttons["pauseButton"].isEnabled)
+                XCTAssertTrue(self.app.buttons["resetButton"].isEnabled)
+                expectation.fulfill()
+            }
+        }
+        wait(for: [expectation], timeout: 5.0)
     }
 }

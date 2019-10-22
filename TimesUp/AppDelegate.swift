@@ -69,11 +69,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         try! context.setQueryGenerationFrom(.current)
         context.automaticallyMergesChangesFromParent = true
         if try! context.count(for: Preset.fetchRequest()) < 1 {
-            for i in 1...10 {
+            for i in 1...9 {
                 let preset = Preset(context: context)
                 preset.name = String(format: "%02d minutes", i)
                 preset.minutes = Int64(i)
             }
+            let preset = Preset(context: context)
+            preset.name = "02 seconds"
+            preset.seconds = 2
             try! context.save()
         }
         return container
