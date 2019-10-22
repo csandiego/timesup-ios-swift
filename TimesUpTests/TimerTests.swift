@@ -73,4 +73,22 @@ class TimerTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1.0)
     }
+    
+    func testWhenDidEnterBackgroundThenTimerIsNil() {
+        controller.didEnterBackground()
+        XCTAssertNil(controller.timer)
+    }
+    
+    func testGivenStartedWhenDidEnterBackgroundThenSuspendAtSet() {
+        controller.start(self)
+        controller.didEnterBackground()
+        XCTAssertLessThanOrEqual(controller.suspendedAt, Date())
+    }
+    
+    func testGivenDidEnterBackgroundWhenDidBecomeActiveThenCreateTimer() {
+        controller.start(self)
+        controller.didEnterBackground()
+        controller.didBecomeActive()
+        XCTAssertNotNil(controller.timer)
+    }
 }

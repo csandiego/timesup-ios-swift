@@ -14,7 +14,7 @@ class TimerViewController: UIViewController {
     var preset: Preset!
     var counter = 0
     var timer: Timer?
-    var suspendedAt: Date?
+    var suspendedAt: Date!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var duration: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -34,13 +34,13 @@ class TimerViewController: UIViewController {
         startButton.isEnabled = true
         pauseButton.isEnabled = false
         resetButton.isEnabled = false
-        NotificationCenter.default.addObserver(self, selector: #selector(suspend), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(awake), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _,_ in
         }
     }
     
-    @objc func suspend() {
+    @objc func didEnterBackground() {
         if let timer = timer {
             suspendedAt = Date()
             timer.invalidate()
@@ -48,18 +48,15 @@ class TimerViewController: UIViewController {
         }
     }
     
-    @objc func awake() {
-        if let suspendedAt = suspendedAt {
-            counter += Int(suspendedAt.timeIntervalSinceNow)
-            if counter > 0 {
-                timer = createTimer()
-            } else {
-                duration.text = "00:00:00"
-                startButton.isEnabled = false
-                pauseButton.isEnabled = false
-                resetButton.isEnabled = true
-            }
-            self.suspendedAt = nil
+    @objc func didBecomeActive() {
+        counter += Int(suspendedAt.timeIntervalSinceNow)
+        if counter > 0 {
+            timer = createTimer()
+        } else {
+            duration.text = "00:00:00"
+            startButton.isEnabled = false
+            pauseButton.isEnabled = false
+            resetButton.isEnabled = true
         }
     }
     
@@ -94,10 +91,7 @@ class TimerViewController: UIViewController {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { settings in
             if settings.authorizationStatus == .authorized {
-                notificationCenter.add(request) { error in
-                    if let error = error {
-                        print(error)
-                    }
+                notificationCenter.add(request) { _ in
                 }
             }
         }
