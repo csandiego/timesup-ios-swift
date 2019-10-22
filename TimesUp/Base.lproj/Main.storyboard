@@ -134,7 +134,7 @@
         <!--Timer View Controller-->
         <scene sceneID="jS1-7u-2N2">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="BgH-EV-gGO" customClass="TimerViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimerViewController" hidesBottomBarWhenPushed="YES" id="BgH-EV-gGO" customClass="TimerViewController" customModule="TimesUp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EEA-Ze-ejR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

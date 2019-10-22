@@ -86,14 +86,14 @@ class TimerViewController: UIViewController {
         pauseButton.isEnabled = true
         resetButton.isEnabled = false
         timer = createTimer()
+        let content = UNMutableNotificationContent()
+        content.title = preset.name!
+        content.sound = UNNotificationSound.default
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(counter), repeats: false)
+        let request = UNNotificationRequest(identifier: "TimesUp.TimerViewController", content: content, trigger: trigger)
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { settings in
-            if settings.alertSetting == .enabled {
-                let content = UNMutableNotificationContent()
-                content.title = self.preset.name!
-                content.sound = UNNotificationSound.default
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(self.counter), repeats: false)
-                let request = UNNotificationRequest(identifier: "TimesUp.TimerViewController", content: content, trigger: trigger)
+            if settings.authorizationStatus == .authorized {
                 notificationCenter.add(request) { error in
                     if let error = error {
                         print(error)
