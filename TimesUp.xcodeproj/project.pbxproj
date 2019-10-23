@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8558BC2236032FF00D5CF38 /* CountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558BC1236032FF00D5CF38 /* CountDownTimer.swift */; };
+		E8558BC423603A3600D5CF38 /* CountDownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558BC323603A3600D5CF38 /* CountDownTimerTests.swift */; };
 		E87D64742355C01700EA154B /* NewPresetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87D64732355C01700EA154B /* NewPresetUITests.swift */; };
 		E889964023541C6400F057A0 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889963F23541C6400F057A0 /* TimerViewController.swift */; };
 		E88996422354237400F057A0 /* NewPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88996412354237400F057A0 /* NewPresetViewController.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E8558BC1236032FF00D5CF38 /* CountDownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTimer.swift; sourceTree = "<group>"; };
+		E8558BC323603A3600D5CF38 /* CountDownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTimerTests.swift; sourceTree = "<group>"; };
 		E87D64732355C01700EA154B /* NewPresetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetUITests.swift; sourceTree = "<group>"; };
 		E889963F23541C6400F057A0 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E88996412354237400F057A0 /* NewPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				E8FA74AE2352A6CE00334F58 /* LaunchScreen.storyboard */,
 				E8FA74B12352A6CE00334F58 /* Info.plist */,
 				E8FA74A92352A6C800334F58 /* TimesUp.xcdatamodeld */,
+				E8558BC1236032FF00D5CF38 /* CountDownTimer.swift */,
 			);
 			path = TimesUp;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 		E8FA74B92352A6CE00334F58 /* TimesUpTests */ = {
 			isa = PBXGroup;
 			children = (
+				E8558BC323603A3600D5CF38 /* CountDownTimerTests.swift */,
 				E8BEDD30235DCBAE00B79B0D /* TimerTests.swift */,
 				E8FA74BC2352A6CF00334F58 /* Info.plist */,
 			);
@@ -281,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E889964023541C6400F057A0 /* TimerViewController.swift in Sources */,
+				E8558BC2236032FF00D5CF38 /* CountDownTimer.swift in Sources */,
 				E8FA74A52352A6C800334F58 /* PresetsViewController.swift in Sources */,
 				E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */,
 				E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */,
@@ -295,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8BEDD31235DCBAE00B79B0D /* TimerTests.swift in Sources */,
+				E8558BC423603A3600D5CF38 /* CountDownTimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
