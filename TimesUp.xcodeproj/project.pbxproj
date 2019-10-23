@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E8558BC2236032FF00D5CF38 /* CountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558BC1236032FF00D5CF38 /* CountDownTimer.swift */; };
 		E8558BC423603A3600D5CF38 /* CountDownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8558BC323603A3600D5CF38 /* CountDownTimerTests.swift */; };
+		E876A1472360971800E2437E /* TimerBackgroundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A1462360971800E2437E /* TimerBackgroundUITests.swift */; };
 		E87D64742355C01700EA154B /* NewPresetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87D64732355C01700EA154B /* NewPresetUITests.swift */; };
 		E889964023541C6400F057A0 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889963F23541C6400F057A0 /* TimerViewController.swift */; };
 		E88996422354237400F057A0 /* NewPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88996412354237400F057A0 /* NewPresetViewController.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		E8558BC1236032FF00D5CF38 /* CountDownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTimer.swift; sourceTree = "<group>"; };
 		E8558BC323603A3600D5CF38 /* CountDownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTimerTests.swift; sourceTree = "<group>"; };
+		E876A1462360971800E2437E /* TimerBackgroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBackgroundUITests.swift; sourceTree = "<group>"; };
 		E87D64732355C01700EA154B /* NewPresetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetUITests.swift; sourceTree = "<group>"; };
 		E889963F23541C6400F057A0 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E88996412354237400F057A0 /* NewPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		E8FA74C42352A6CF00334F58 /* TimesUpUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E876A1462360971800E2437E /* TimerBackgroundUITests.swift */,
 				E8FFC12323582DDE0038049E /* PresetsUITests.swift */,
 				E8FFC121235827390038049E /* TimerUITests.swift */,
 				E8FB87212356B6C40040441F /* EditPresetUITests.swift */,
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8FB87222356B6C50040441F /* EditPresetUITests.swift in Sources */,
+				E876A1472360971800E2437E /* TimerBackgroundUITests.swift in Sources */,
 				E87D64742355C01700EA154B /* NewPresetUITests.swift in Sources */,
 				E8FFC12423582DDE0038049E /* PresetsUITests.swift in Sources */,
 				E8FFC122235827390038049E /* TimerUITests.swift in Sources */,
