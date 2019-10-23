@@ -18,6 +18,13 @@ class CountDownTimerTests: XCTestCase {
         XCTAssertEqual(timer.timeLeft, start)
     }
     
+    func testWhenStartedThenUpdateStatus() {
+        let timer = CountDownTimer(1.0) { _ in
+        }
+        timer.start()
+        XCTAssertTrue(timer.isRunning)
+    }
+    
     func testWhenStartedThenDecrementTimeLeft() {
         let timer = CountDownTimer(2.0) { _ in
         }
@@ -54,6 +61,19 @@ class CountDownTimerTests: XCTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 2.5)
+    }
+    
+    func testGivenStartedWhenPausedThenUpdateStatus() {
+        let timer = CountDownTimer(2.0) { _ in
+        }
+        timer.start()
+        let expectation = self.expectation(description: "Wait")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            timer.pause()
+            XCTAssertFalse(timer.isRunning)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.5)
     }
     
     func testGivenStartedWhenPausedThenFreezeTimeLeft() {

@@ -16,12 +16,20 @@ class CountDownTimer {
     var timeLeft: TimeInterval {
         _timeLeft
     }
+    private var _isRunning = false
+    var isRunning: Bool {
+        _isRunning
+    }
     private var timer: Timer?
     
     init(_ from: TimeInterval, callback: @escaping (TimeInterval) -> Void) {
         self.from = from
         self.callback = callback
         _timeLeft = from
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
     
     func start() {
@@ -34,9 +42,11 @@ class CountDownTimer {
                 self.timer = nil
             }
         }
+        _isRunning = true
     }
     
     func pause() {
+        _isRunning = false
         timer?.invalidate()
         timer = nil
     }

@@ -12,9 +12,26 @@ import CoreData
 class TimerViewController: UIViewController {
     
     var preset: Preset!
-    var counter = 0
-    var timer: Timer?
-    var suspendedAt: Date!
+    lazy var formatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
+    lazy var timer: CountDownTimer = {
+        let from = TimeInterval(preset.hours * 60 * 60) +
+            TimeInterval(preset.minutes * 60) +
+            TimeInterval(preset.seconds)
+        return CountDownTimer(from) { timeLeft in
+            self.duration.text = self.formatter.string(from: timeLeft)
+            if timeLeft == 0.0 {
+                self.startButton.isEnabled = false
+                self.pauseButton.isEnabled = false
+                self.resetButton.isEnabled = true
+            }
+        }
+    }()
+    var didEnterBackgroundOn: Date?
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var duration: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -24,13 +41,7 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         name.text = preset.name
-        duration.text = String(
-            format: "%02d:%02d:%02d",
-            preset.hours,
-            preset.minutes,
-            preset.seconds
-        )
-        counter = Int(preset.hours) * 60 * 60 + Int(preset.minutes) * 60 + Int(preset.seconds)
+        duration.text = formatter.string(from: timer.timeLeft)
         startButton.isEnabled = true
         pauseButton.isEnabled = false
         resetButton.isEnabled = false
@@ -41,52 +52,37 @@ class TimerViewController: UIViewController {
     }
     
     @objc func didEnterBackground() {
-        if let timer = timer {
-            suspendedAt = Date()
-            timer.invalidate()
-            self.timer = nil
+        if timer.isRunning {
+            timer.pause()
+            didEnterBackgroundOn = Date()
         }
     }
     
     @objc func didBecomeActive() {
-        counter += Int(suspendedAt.timeIntervalSinceNow)
-        if counter > 0 {
-            timer = createTimer()
-        } else {
-            duration.text = "00:00:00"
-            startButton.isEnabled = false
-            pauseButton.isEnabled = false
-            resetButton.isEnabled = true
-        }
-    }
-    
-    func createTimer() -> Timer {
-        return Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            self.counter -= 1
-            let hours = self.counter / (60 * 60)
-            let rem = self.counter % (60 * 60)
-            let minutes = rem / 60
-            let seconds = rem % 60
-            self.duration.text = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-            if self.counter == 0 {
-                self.startButton.isEnabled = false
-                self.pauseButton.isEnabled = false
-                self.resetButton.isEnabled = true
-                self.timer?.invalidate()
-                self.timer = nil
+        if let didEnterBackgroundOn = didEnterBackgroundOn {
+            let from = timer.timeLeft + didEnterBackgroundOn.timeIntervalSinceNow.rounded()
+            if from > 0.0 {
+                timer.resume(from: from)
+                duration.text = formatter.string(from: timer.timeLeft)
+            } else {
+                duration.text = formatter.string(from: 0.0)
+                startButton.isEnabled = false
+                pauseButton.isEnabled = false
+                resetButton.isEnabled = true
             }
+            self.didEnterBackgroundOn = nil
         }
     }
     
     @IBAction func start(_ sender: Any) {
+        timer.start()
         startButton.isEnabled = false
         pauseButton.isEnabled = true
         resetButton.isEnabled = false
-        timer = createTimer()
         let content = UNMutableNotificationContent()
         content.title = preset.name!
         content.sound = UNNotificationSound.default
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(counter), repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timer.timeLeft, repeats: false)
         let request = UNNotificationRequest(identifier: "TimesUp.TimerViewController", content: content, trigger: trigger)
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { settings in
@@ -98,31 +94,24 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func pause(_ sender: Any) {
+        timer.pause()
         startButton.isEnabled = true
         pauseButton.isEnabled = false
         resetButton.isEnabled = true
-        timer?.invalidate()
-        timer = nil
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["TimesUp.TimerViewController"])
     }
     
     @IBAction func reset(_ sender: Any) {
+        timer.reset()
+        duration.text = formatter.string(from: timer.timeLeft)
         startButton.isEnabled = true
         pauseButton.isEnabled = false
         resetButton.isEnabled = false
-        duration.text = String(
-            format: "%02d:%02d:%02d",
-            preset.hours,
-            preset.minutes,
-            preset.seconds
-        )
-        counter = Int(preset.hours) * 60 * 60 + Int(preset.minutes) * 60 + Int(preset.seconds)
     }
     
     override func didMove(toParent parent: UIViewController?) {
         if parent == nil {
-            timer?.invalidate()
-            timer = nil
+            timer.pause()
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["TimesUp.TimerViewController"])
         }
     }
