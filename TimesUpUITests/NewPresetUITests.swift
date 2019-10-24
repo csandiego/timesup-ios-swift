@@ -75,4 +75,9 @@ class NewPresetUITests: XCTestCase {
         XCTAssertEqual(cell.staticTexts["nameLabel"].label, preset.name)
         XCTAssertEqual(cell.staticTexts["durationLabel"].label, String(format: "%02d:%02d:%02d", preset.hours, preset.minutes, preset.seconds))
     }
+    
+    func testWhenCancelledThenNavigateToPresets() {
+        app.navigationBars["TimesUp.NewPresetView"].buttons["cancelBarButtonItem"].tap()
+        XCTAssertTrue(app.navigationBars["Presets"].exists)
+    }
 }

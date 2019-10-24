@@ -59,7 +59,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="newBarButtonItem"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <segue destination="csp-9V-ZZ2" kind="show" identifier="newPreset" id="eOf-S6-Ghi"/>
+                                <segue destination="lfC-Jh-O3p" kind="presentation" identifier="newPreset" modalPresentationStyle="fullScreen" id="eOf-S6-Ghi"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -67,7 +67,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="BgH-EV-gGO" kind="show" identifier="showTimer" id="pKS-1m-LAv"/>
-                        <segue destination="9Fk-KA-3l4" kind="show" identifier="editPreset" id="jgH-Qn-Dsh"/>
+                        <segue destination="kIk-Ra-kBh" kind="presentation" identifier="editPreset" modalPresentationStyle="fullScreen" id="jgH-Qn-Dsh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-55-d5J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -83,7 +83,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-Q9-axs">
-                                <rect key="frame" x="190" y="590.5" width="34" height="30"/>
+                                <rect key="frame" x="190" y="615" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="saveButton"/>
@@ -93,13 +93,13 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUc-eb-cEp">
-                                <rect key="frame" x="16" y="342.5" width="382" height="216"/>
+                                <rect key="frame" x="16" y="367" width="382" height="216"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="durationPicker"/>
                                 </userDefinedRuntimeAttributes>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqk-Cf-e2v" userLabel="Name">
-                                <rect key="frame" x="16" y="276.5" width="382" height="34"/>
+                                <rect key="frame" x="16" y="301" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <userDefinedRuntimeAttributes>
@@ -120,7 +120,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Ug-9K-l4h"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9mQ-5x-5Bs"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9mQ-5x-5Bs">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="H9F-D3-vTo">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="cancelBarButtonItem"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="cancel:" destination="csp-9V-ZZ2" id="G5n-YT-CHP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="duration" destination="pUc-eb-cEp" id="uhw-iL-13J"/>
                         <outlet property="name" destination="Tqk-Cf-e2v" id="kzJ-0H-dTz"/>
@@ -129,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZg-ZL-FE4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="-597"/>
+            <point key="canvasLocation" x="2705.7971014492755" y="-597.32142857142856"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="jS1-7u-2N2">
@@ -250,7 +259,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4Q-Mv-eam">
-                                <rect key="frame" x="190" y="590.5" width="34" height="30"/>
+                                <rect key="frame" x="190" y="615" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="saveButton"/>
@@ -260,13 +269,13 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6u-IO-dl9">
-                                <rect key="frame" x="16" y="342.5" width="382" height="216"/>
+                                <rect key="frame" x="16" y="367" width="382" height="216"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="durationPicker"/>
                                 </userDefinedRuntimeAttributes>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4Ql-wT-idr" userLabel="Name">
-                                <rect key="frame" x="16" y="276.5" width="382" height="34"/>
+                                <rect key="frame" x="16" y="301" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <userDefinedRuntimeAttributes>
@@ -287,7 +296,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MgT-NO-WYZ"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9fp-nU-pnc"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9fp-nU-pnc">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="03w-Dq-1DP">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="cancelBarButtonItem"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="cancel:" destination="9Fk-KA-3l4" id="iIg-xc-PsP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="duration" destination="E6u-IO-dl9" id="9Q3-yJ-uuc"/>
                         <outlet property="name" destination="4Ql-wT-idr" id="SVI-uD-5Ku"/>
@@ -296,7 +314,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRV-Km-7fO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="826"/>
+            <point key="canvasLocation" x="2705.7971014492755" y="825.66964285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vqK-wJ-FbD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lfC-Jh-O3p" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8iJ-be-XWN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="csp-9V-ZZ2" kind="relationship" relationship="rootViewController" id="wfk-LZ-E5X"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1eD-No-Mkl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1795.6521739130437" y="-597.32142857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="91F-v3-FQP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kIk-Ra-kBh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="exX-ce-P3F">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9Fk-KA-3l4" kind="relationship" relationship="rootViewController" id="bmQ-Tn-F5k"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gC2-Hz-m8g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1795.6521739130437" y="825.66964285714278"/>
         </scene>
     </scenes>
 </document>

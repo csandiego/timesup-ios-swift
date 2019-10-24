@@ -43,7 +43,8 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
             Double(duration.selectedRow(inComponent: 1) * 60) +
             Double(duration.selectedRow(inComponent: 2))
         try! persistentContainer.viewContext.save()
-        navigationController!.popViewController(animated: true)
+        presentingViewController?.dismiss(animated: true, completion: nil)
+//        navigationController!.popViewController(animated: true)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -69,5 +70,9 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         saveButton.isEnabled = isValid()
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

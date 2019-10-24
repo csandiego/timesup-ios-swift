@@ -47,13 +47,13 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "newPreset":
-            let viewController = segue.destination as! NewPresetViewController
+            let viewController = (segue.destination as! UINavigationController).topViewController as! NewPresetViewController
             viewController.persistentContainer = persistentContainer
         case "showTimer":
             let viewController = segue.destination as! TimerViewController
             viewController.preset = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
         case "editPreset":
-            let viewController = segue.destination as! EditPresetViewController
+            let viewController = (segue.destination as! UINavigationController).topViewController as! EditPresetViewController
             viewController.persistentContainer = persistentContainer
             viewController.preset = fetchedResultsController.object(at: tableView.indexPathForSelectedRow!)
         default:
