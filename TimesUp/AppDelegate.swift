@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let context = container.viewContext
         try! context.setQueryGenerationFrom(.current)
         context.automaticallyMergesChangesFromParent = true
-        if CommandLine.arguments.contains("--test-mode") {
+        if CommandLine.arguments.contains("--test-mode") && !CommandLine.arguments.contains("--no-data"){
             if try! context.count(for: Preset.fetchRequest()) < 1 {
                 for i in 1...9 {
                     let preset = Preset(context: context)
