@@ -31,11 +31,17 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
         formatter.zeroFormattingBehavior = .pad
         return formatter
     }()
+    lazy var emptyView: UIView = Bundle.main.loadNibNamed("EmptyView", owner: self, options: nil)!.first as! UIView
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelectionDuringEditing = true
-        navigationItem.setRightBarButton(editButtonItem, animated: false)
+        if fetchedResultsController.fetchedObjects!.count == 0 {
+            tableView.backgroundView = emptyView
+            tableView.separatorStyle = .none
+        } else {
+            navigationItem.setRightBarButton(editButtonItem, animated: false)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,9 +104,19 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
+            if tableView.backgroundView != nil {
+                tableView.backgroundView = nil
+                tableView.separatorStyle = .singleLine
+                navigationItem.setRightBarButton(editButtonItem, animated: true)
+            }
             tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .fade)
+            if controller.fetchedObjects!.count == 0 {
+                tableView.backgroundView = emptyView
+                tableView.separatorStyle = .none
+                navigationItem.setRightBarButton(nil, animated: true)
+            }
         case .update:
             bindCell(tableView.cellForRow(at: indexPath!)!, indexPath!)
         case .move:

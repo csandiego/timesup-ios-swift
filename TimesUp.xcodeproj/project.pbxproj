@@ -14,6 +14,7 @@
 		E889964023541C6400F057A0 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E889963F23541C6400F057A0 /* TimerViewController.swift */; };
 		E88996422354237400F057A0 /* NewPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88996412354237400F057A0 /* NewPresetViewController.swift */; };
 		E8899644235530AE00F057A0 /* EditPresetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8899643235530AE00F057A0 /* EditPresetViewController.swift */; };
+		E8A173FD2361562100351A10 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A173FC2361562100351A10 /* EmptyView.xib */; };
 		E8BEDD31235DCBAE00B79B0D /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BEDD30235DCBAE00B79B0D /* TimerTests.swift */; };
 		E8FA74A12352A6C800334F58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A02352A6C800334F58 /* AppDelegate.swift */; };
 		E8FA74A32352A6C800334F58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA74A22352A6C800334F58 /* SceneDelegate.swift */; };
@@ -52,6 +53,7 @@
 		E889963F23541C6400F057A0 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E88996412354237400F057A0 /* NewPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPresetViewController.swift; sourceTree = "<group>"; };
 		E8899643235530AE00F057A0 /* EditPresetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresetViewController.swift; sourceTree = "<group>"; };
+		E8A173FC2361562100351A10 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		E8BEDD30235DCBAE00B79B0D /* TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
 		E8FA749D2352A6C800334F58 /* TimesUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimesUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FA74A02352A6C800334F58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				E8FA74A02352A6C800334F58 /* AppDelegate.swift */,
 				E8FA74A22352A6C800334F58 /* SceneDelegate.swift */,
 				E8FA74A42352A6C800334F58 /* PresetsViewController.swift */,
+				E8A173FC2361562100351A10 /* EmptyView.xib */,
 				E8FA74A62352A6C800334F58 /* Main.storyboard */,
 				E8899643235530AE00F057A0 /* EditPresetViewController.swift */,
 				E88996412354237400F057A0 /* NewPresetViewController.swift */,
@@ -262,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A173FD2361562100351A10 /* EmptyView.xib in Resources */,
 				E8FA74B02352A6CE00334F58 /* LaunchScreen.storyboard in Resources */,
 				E8FA74AD2352A6CE00334F58 /* Assets.xcassets in Resources */,
 				E8FA74A82352A6C800334F58 /* Main.storyboard in Resources */,
