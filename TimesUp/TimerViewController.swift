@@ -19,10 +19,7 @@ class TimerViewController: UIViewController {
         return formatter
     }()
     lazy var timer: CountDownTimer = {
-        let from = TimeInterval(preset.hours * 60 * 60) +
-            TimeInterval(preset.minutes * 60) +
-            TimeInterval(preset.seconds)
-        return CountDownTimer(from) { timeLeft in
+        CountDownTimer(preset.duration) { timeLeft in
             self.duration.text = self.formatter.string(from: timeLeft)
             if timeLeft == 0.0 {
                 self.startButton.isEnabled = false

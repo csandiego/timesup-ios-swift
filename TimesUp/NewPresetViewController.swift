@@ -32,9 +32,9 @@ class NewPresetViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         let context = persistentContainer.viewContext
         let preset = Preset(context: context)
         preset.name = name.text
-        preset.hours = Int64(duration.selectedRow(inComponent: 0))
-        preset.minutes = Int64(duration.selectedRow(inComponent: 1))
-        preset.seconds = Int64(duration.selectedRow(inComponent: 2))
+        preset.duration = Double(duration.selectedRow(inComponent: 0) * 60 * 60) +
+            Double(duration.selectedRow(inComponent: 1) * 60) +
+            Double(duration.selectedRow(inComponent: 2))
         try! context.save()
         navigationController!.popViewController(animated: true)
     }

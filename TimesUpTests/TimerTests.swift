@@ -27,9 +27,7 @@ class TimerTests: XCTestCase {
         })
         let preset = Preset(context: container.viewContext)
         preset.name = "1 minute"
-        preset.hours = 0
-        preset.minutes = 1
-        preset.seconds = 0
+        preset.duration = 60.0
         try! container.viewContext.save()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         controller = (storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController)

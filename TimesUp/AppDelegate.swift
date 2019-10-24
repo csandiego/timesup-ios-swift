@@ -72,11 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for i in 1...9 {
                 let preset = Preset(context: context)
                 preset.name = String(format: "%02d minutes", i)
-                preset.minutes = Int64(i)
+                preset.duration = Double(i * 60)
             }
             let preset = Preset(context: context)
             preset.name = "02 seconds"
-            preset.seconds = 2
+            preset.duration = 2.0
             try! context.save()
         }
         return container

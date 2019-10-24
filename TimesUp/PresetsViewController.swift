@@ -13,6 +13,12 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     
     var persistentContainer: NSPersistentContainer!
     var fetchedResultsController: NSFetchedResultsController<Preset>!
+    lazy var formatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +56,7 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
     func bindCell(_ cell: UITableViewCell, _ indexPath: IndexPath) {
         let preset = fetchedResultsController.object(at: indexPath)
         cell.textLabel!.text = preset.name
-        cell.detailTextLabel!.text = String(
-            format: "%02d:%02d:%02d",
-            preset.hours,
-            preset.minutes,
-            preset.seconds
-        )
+        cell.detailTextLabel!.text = formatter.string(from: preset.duration)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

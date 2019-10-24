@@ -23,9 +23,13 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
         duration.dataSource = self
         duration.delegate = self
         name.text = preset.name
-        duration.selectRow(Int(preset.hours), inComponent: 0, animated: false)
-        duration.selectRow(Int(preset.minutes), inComponent: 1, animated: false)
-        duration.selectRow(Int(preset.seconds), inComponent: 2, animated: false)
+        let hours = Int(preset.duration) / (60 * 60)
+        let rem = Int(preset.duration) % (60 * 60)
+        let minutes = rem / 60
+        let seconds = rem % 60
+        duration.selectRow(hours, inComponent: 0, animated: false)
+        duration.selectRow(minutes, inComponent: 1, animated: false)
+        duration.selectRow(seconds, inComponent: 2, animated: false)
         saveButton.isEnabled = isValid()
     }
     
@@ -35,9 +39,9 @@ class EditPresetViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     @IBAction func save(_ sender: Any) {
         preset.name = name.text
-        preset.hours = Int64(duration.selectedRow(inComponent: 0))
-        preset.minutes = Int64(duration.selectedRow(inComponent: 1))
-        preset.seconds = Int64(duration.selectedRow(inComponent: 2))
+        preset.duration = Double(duration.selectedRow(inComponent: 0) * 60 * 60) +
+            Double(duration.selectedRow(inComponent: 1) * 60) +
+            Double(duration.selectedRow(inComponent: 2))
         try! persistentContainer.viewContext.save()
         navigationController!.popViewController(animated: true)
     }
