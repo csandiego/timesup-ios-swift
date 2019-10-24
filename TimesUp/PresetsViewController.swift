@@ -12,7 +12,19 @@ import CoreData
 class PresetsViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     var persistentContainer: NSPersistentContainer!
-    var fetchedResultsController: NSFetchedResultsController<Preset>!
+    lazy var fetchedResultsController: NSFetchedResultsController<Preset> = {
+        let request: NSFetchRequest<Preset> = Preset.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let controller = NSFetchedResultsController(
+            fetchRequest: request,
+            managedObjectContext: persistentContainer.viewContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        controller.delegate = self
+        try! controller.performFetch()
+        return controller
+    }()
     lazy var formatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
@@ -22,16 +34,6 @@ class PresetsViewController: UITableViewController, NSFetchedResultsControllerDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let request: NSFetchRequest<Preset> = Preset.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(
-            fetchRequest: request,
-            managedObjectContext: persistentContainer.viewContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil
-        )
-        fetchedResultsController.delegate = self
-        try! fetchedResultsController.performFetch()
         tableView.allowsSelectionDuringEditing = true
         navigationItem.setRightBarButton(editButtonItem, animated: false)
     }
