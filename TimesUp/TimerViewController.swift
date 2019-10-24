@@ -77,7 +77,7 @@ class TimerViewController: UIViewController {
         pauseButton.isEnabled = true
         resetButton.isEnabled = false
         let content = UNMutableNotificationContent()
-        content.title = preset.name!
+        content.body = preset.name!
         content.sound = UNNotificationSound.default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timer.timeLeft, repeats: false)
         let request = UNNotificationRequest(identifier: "TimesUp.TimerViewController", content: content, trigger: trigger)
